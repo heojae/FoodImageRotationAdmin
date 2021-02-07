@@ -2,3 +2,4 @@
 data/before_rotate
 data/after_rotate
 .DS_Store
+__pycache__/
