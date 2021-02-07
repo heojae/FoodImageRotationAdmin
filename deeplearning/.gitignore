@@ -1,0 +1,4 @@
+# 학습데이터들이 업로드 되는 것을 막기위해서, 추가하였다.
+data/before_rotate
+data/after_rotate
+.DS_Store
