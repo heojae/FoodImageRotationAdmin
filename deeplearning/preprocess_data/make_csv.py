@@ -1,3 +1,4 @@
+import argparse
 import os
 from typing import List
 import pandas as pd
@@ -24,16 +25,20 @@ def search_for_csv_list(after_rotate_dir_path: str, train_or_test="train") -> Li
 
 
 if __name__ == "__main__":
-    after_rotate_dir_path = "/Users/shrldh3576/Desktop/FiraAdmin/code/ic-ai_fira/train/data/after_rotate"
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--after_rotate_dir_path', type=str, default="../data/after_rotate")
+    parser.add_argument('--save_train_csv_path', type=str, default="../train.csv")
+    parser.add_argument('--save_test_csv_path', type=str, default="../test.csv")
+    args = parser.parse_args()
 
-    train_csv_list = search_for_csv_list(after_rotate_dir_path=after_rotate_dir_path,
+    train_csv_list = search_for_csv_list(after_rotate_dir_path=args.after_rotate_dir_path,
                                          train_or_test="train")
 
-    test_csv_list = search_for_csv_list(after_rotate_dir_path=after_rotate_dir_path,
+    test_csv_list = search_for_csv_list(after_rotate_dir_path=args.after_rotate_dir_path,
                                         train_or_test="test")
 
-    df = pd.DataFrame(train_csv_list, columns=["train_or_test", 'degree_dir_name', 'iamge_name'])
-    df.to_csv('./../train.csv', index=False)
+    df = pd.DataFrame(train_csv_list, columns=["train_or_test", 'degree_dir_name', 'image_name'])
+    df.to_csv(args.save_train_csv_path, index=False)
 
-    df = pd.DataFrame(test_csv_list, columns=["train_or_test", 'degree_dir_name', 'iamge_name'])
-    df.to_csv('./../test.csv', index=False)
+    df = pd.DataFrame(test_csv_list, columns=["train_or_test", 'degree_dir_name', 'image_name'])
+    df.to_csv(args.save_test_csv_path, index=False)

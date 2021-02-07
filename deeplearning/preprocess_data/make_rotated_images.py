@@ -1,3 +1,4 @@
+import argparse
 import os
 import random
 import PIL
@@ -5,6 +6,9 @@ from PIL import Image
 
 
 def save_before_rotate_images_to_after_rotate_images(before_dir_path: str = "", save_dir_path: str = ""):
+    # make directory
+    make_directory_before_do_main_job(save_dir_path)
+
     before_rotate_filenames = os.listdir(before_dir_path)
     if ".DS_Store" in before_rotate_filenames:
         before_rotate_filenames.remove(".DS_Store")
@@ -31,6 +35,18 @@ def save_before_rotate_images_to_after_rotate_images(before_dir_path: str = "", 
         rotated_and_resize_and_save_image(image=before_rotate_image, degree=270, size=224, save_path=save_path_270)
 
 
+def make_directory_before_do_main_job(save_dir_path):
+    os.makedirs(save_dir_path, exist_ok=True)
+    os.makedirs(os.path.join(save_dir_path, "train", "degree_0"), exist_ok=True)
+    os.makedirs(os.path.join(save_dir_path, "train", "degree_90"), exist_ok=True)
+    os.makedirs(os.path.join(save_dir_path, "train", "degree_180"), exist_ok=True)
+    os.makedirs(os.path.join(save_dir_path, "train", "degree_270"), exist_ok=True)
+    os.makedirs(os.path.join(save_dir_path, "test", "degree_0"), exist_ok=True)
+    os.makedirs(os.path.join(save_dir_path, "test", "degree_90"), exist_ok=True)
+    os.makedirs(os.path.join(save_dir_path, "test", "degree_180"), exist_ok=True)
+    os.makedirs(os.path.join(save_dir_path, "test", "degree_270"), exist_ok=True)
+
+
 def rotated_and_resize_and_save_image(image: PIL.Image.Image, degree: int = 0, size: int = 224, save_path: str = ""):
     rotated_image = image.rotate(degree, expand=True)
     resized_image = rotated_image.resize((size, size))
@@ -38,7 +54,10 @@ def rotated_and_resize_and_save_image(image: PIL.Image.Image, degree: int = 0, s
 
 
 if __name__ == "__main__":
-    before_dir_path1 = "/Users/shrldh3576/Desktop/FiraAdmin/code/ic-ai_fira/train/data/before_rotate"
-    save_dir_path1 = "/Users/shrldh3576/Desktop/FiraAdmin/code/ic-ai_fira/train/data/after_rotate"
-    save_before_rotate_images_to_after_rotate_images(before_dir_path=before_dir_path1,
-                                                     save_dir_path=save_dir_path1)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--before_dir_path', type=str, default="../data/before_rotate")
+    parser.add_argument('--save_dir_path', type=str, default="../data/after_rotate")
+    args = parser.parse_args()
+
+    save_before_rotate_images_to_after_rotate_images(before_dir_path=args.before_dir_path,
+                                                     save_dir_path=args.save_dir_path)
