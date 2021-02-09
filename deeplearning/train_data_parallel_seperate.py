@@ -168,7 +168,7 @@ if __name__ == "__main__":
     parser.add_argument('--save_model_file_name', type=str, default="data_parallel_separate_b0_bs_96.pth.tar")
 
     # model train parameter
-    parser.add_argument('--batch_size', type=int, default=96)  # 128 까지는 검증 성공
+    parser.add_argument('--batch_size', type=int, default=96)
     parser.add_argument('--pin_memory', type=bool, default=True)
     parser.add_argument('--shuffle', type=bool, default=True)
     parser.add_argument('--lr', type=float, default=1e-4)
