@@ -2,3 +2,5 @@
 data/before_rotate
 data/after_rotate
 .DS_Store
+__pycache__/
+/weight/single_gpu_b0_bs_32.pth.tar
