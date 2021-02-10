@@ -1,0 +1,22 @@
+syntax = "proto3";
+import "empty.proto";
+
+message FoodB64Image {
+  string b64image = 1;
+}
+
+message InferenceResult {
+  int32 model_degree = 1;
+  int32 exif_degree = 2;
+  float confidence = 3;
+  bool success = 4;
+}
+
+message ModelPath{
+  string path = 1;
+}
+
+service InferenceFoodImage {
+  rpc Inference(FoodB64Image) returns (InferenceResult) {};
+  rpc LoadModel(ModelPath) returns (Empty){};
+}
