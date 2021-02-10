@@ -1,0 +1,39 @@
+syntax = "proto3";
+import "empty.proto";
+
+message DatasetInfo {
+  int32 pk = 1;
+  string title = 2;
+}
+
+message SelectedDatasetInfo{
+  int32 dataset_info_pk = 1;
+}
+
+message NewDatasetInfo {
+  string title = 1;
+}
+
+message ImageInfo {
+  int32 pk = 1;
+  int32 dataset_info_pk = 2;
+  string original_file_name = 3;
+  string uuid_file_name = 4;
+  int32 exif_degree = 5;
+  int32 model_degree = 6;
+  float confidence = 7;
+  int32 user_fix_degree = 8;
+}
+
+message SelectedImageInfo {
+  int32 image_info_pk = 1;
+}
+
+service Dataset {
+  rpc GetDatasetInfoList(Empty) returns (stream DatasetInfo) {};
+  rpc GetImageInfoList(Empty) returns (stream ImageInfo) {};
+  rpc GetChooseImageInfoList(SelectedDatasetInfo) returns (stream ImageInfo) {};
+  rpc RemoveImage(SelectedImageInfo) returns (Empty){};
+  rpc CreateDatasetInfo(NewDatasetInfo) returns (Empty){};
+}
+

@@ -1,0 +1,15 @@
+syntax = "proto3";
+import "empty.proto";
+
+message UserFixedB64ImageInfo {
+  string b64image = 1;
+  string file_name = 2;
+  int32 exif_degree = 3;
+  int32 model_degree = 4;
+  float confidence = 5;
+  int32 user_fix_degree = 6;
+}
+
+service UserFixImage {
+  rpc SaveUserFixImage(UserFixedB64ImageInfo) returns (Empty) {};
+}
