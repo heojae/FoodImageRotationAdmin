@@ -1,0 +1,22 @@
+syntax = "proto3";
+import "empty.proto";
+
+message SelectedModelVersion {
+  int32 pk = 1;
+}
+
+message ModelVersionInfo {
+  int32 pk = 1;
+  string version_name = 2;
+  float train_acc = 3;
+  float test_acc = 4;
+  string model_file_name = 5;
+  bool is_using = 6;
+}
+
+service ModelVersion {
+  rpc GetUsingModelVersion(Empty) returns (ModelVersionInfo) {};
+  rpc GetAllModelVersion(Empty) returns (stream ModelVersionInfo) {};
+  rpc Change(SelectedModelVersion) returns (Empty) {};
+}
+
