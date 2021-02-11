@@ -1,0 +1,2 @@
+python create_sample_db.py
+python create_sample_instance.py
