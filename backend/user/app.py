@@ -37,7 +37,7 @@ class UserServicer(user_pb2_grpc.UserServicer):
             return user_pb2.UserInfo(pk=user.pk, email=user.email,
                                      profile_image=user.profile_image, access_token=user.access_token)
 
-        msg = "Invalid email or password had come"
+        msg = "Invalid email or password come"
         context.set_details(msg)
         context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
         return None
@@ -51,7 +51,7 @@ class UserServicer(user_pb2_grpc.UserServicer):
             return user_pb2.UserInfo(pk=user.pk, email=user.email,
                                      profile_image=user.profile_image, access_token=user.access_token)
 
-        msg = "Invalid access_token had come"
+        msg = "Invalid access_token come"
         context.set_details(msg)
         context.set_code(grpc.StatusCode.UNAUTHENTICATED)
         return None
@@ -65,7 +65,7 @@ class UserServicer(user_pb2_grpc.UserServicer):
         if access_token in user_access_token_list:
             return empty_pb2.Empty()
 
-        msg = "Invalid access_token had come"
+        msg = "Invalid access_token come"
         context.set_details(msg)
         context.set_code(grpc.StatusCode.UNAUTHENTICATED)
         return None
@@ -87,7 +87,7 @@ async def serve() -> None:
         await server.wait_for_termination()
     except KeyboardInterrupt:
         redis.close()
-        await redis.wait_closed()
+        await redis.wait_closed()  # Coroutine waiting until underlying connections are closed.
         await database.disconnect()
         await server.stop(0)
 
