@@ -34,21 +34,27 @@ class ModelVersion:
         return await database.fetch_one(query)
 
     @classmethod
-    async def change_using_model(cls, pk: int) -> None:
+    async def change_using_model(cls, pk: int) -> None or int:
+        check_exist_query = model_versions.select().where(model_versions.c.pk == pk)
+        is_exist = await database.fetch_one(check_exist_query)
+        if not is_exist:
+            return None
+
         query_now_is_using = model_versions.update().where(model_versions.c.is_using).values(is_using=False)
         query_next_is_using = model_versions.update().where(model_versions.c.pk == pk).values(is_using=True)
-        await database.execute(query_now_is_using)
-        await database.execute(query_next_is_using)
+        now_is_using_success = await database.execute(query_now_is_using)
+        next_is_using_success = await database.execute(query_next_is_using)
 
-        return None
+        return now_is_using_success and next_is_using_success
 
 
 if __name__ == '__main__':
-    sample_model_version_list = asyncio.run(ModelVersion.list())
+    # sample_model_version_list = asyncio.run(ModelVersion.list())
 
-    sample_model_version_detail = asyncio.run(ModelVersion.detail(pk=1))
+    # sample_model_version_detail = asyncio.run(ModelVersion.detail(pk=1))
 
-    sample_model_version_is_using = asyncio.run(ModelVersion.get_using_model())
+    # sample_model_version_is_using = asyncio.run(ModelVersion.get_using_model())
 
     # please check this with datagrip or anything show database program
-    sample_model_version_change_using_model = asyncio.run(ModelVersion.change_using_model(pk=2))
+    sample_model_version_change_using_model = asyncio.run(ModelVersion.change_using_model(pk=4))
+    print(sample_model_version_change_using_model)
