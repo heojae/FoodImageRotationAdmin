@@ -61,4 +61,7 @@ if __name__ == '__main__':
     sample_user_list = asyncio.run(User.list())
     sample_user_detail = asyncio.run(User.detail(pk=1))
     sample_user_login = asyncio.run(User.login(email="admin@naver.com", password="1234"))
-    sample_user_detail_by_token = asyncio.run(User.detail_by_access_token(access_token="aaaa-bbbb"))
+    sample_user_detail_by_token = asyncio.run(
+        User.detail_by_access_token(access_token="f9e4a020-6bfd-11eb-8572-0800200c9a66"))
+    sample_user_is_exist_by_access_token = asyncio.run(
+        User.is_exist_by_access_token(access_token="f9e4a020-6bfd-11eb-8572-0800200c9a66"))
