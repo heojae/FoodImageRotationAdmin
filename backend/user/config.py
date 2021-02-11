@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     dl_api_listen_port: str = "[::]:50052"
     model_version_api_listen_port: str = "[::]:50053"
     dataset_api_listen_port: str = "[::]:50054"
+    media_server_listen_port: str = "[::]:50050"
 
     user_api_listen_addr: str = "localhost:50051"
     dl_api_listen_addr: str = "localhost:50052"
