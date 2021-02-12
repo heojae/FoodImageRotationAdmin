@@ -44,7 +44,7 @@ class ModelVersionServicer(model_version_pb2_grpc.ModelVersionServicer):
             msg = "Invalid model version pk come"
             context.set_details(msg)
             context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
-            return None
+            return Empty()
 
         # TODO : dl_server 구현 되면, 주석 제거하기.
         model_version = await get_using_model_version()
