@@ -43,6 +43,6 @@ def load_model(path: str) -> Empty or None:
 
 if __name__ == '__main__':
     logging.basicConfig()
-    image: PIL.Image.Image = Image.new('RGB', (224, 224), (127, 127, 127))
+    image: PIL.Image.Image = Image.open("./sample/sample1.jpg")  # Image.new('RGB', (224, 224), (127, 127, 127))
     sample_inference = inference(image=image)
-    # load_model(path="./weight/fira_efficient_b0_base.pth")
+    load_model(path="single_gpu_b0_bs_32_e_20.pth")

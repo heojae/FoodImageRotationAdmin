@@ -20,6 +20,18 @@ def get_using_model_version_info() -> model_version_pb2.ModelVersionInfo:
         return model_version_info
 
 
+def convert_bytes_image2pil_image(bytes_image_content: bytes) -> PIL.Image.Image:
+    image_file: BytesIO = BytesIO(bytes_image_content)
+    image: PIL.Image.Image = Image.open(image_file)
+    return image
+
+
+def save_convert_bytes_image2pil_image(bytes_image_content: bytes, save_file_name="check.jpg") -> None:
+    image_file: BytesIO = BytesIO(bytes_image_content)
+    with open(save_file_name, "wb") as f:
+        f.write(image_file.getbuffer())
+
+
 def convert_b64image2pil_image(b64image: str) -> PIL.Image.Image:
     image_bytes: bytes = base64.b64decode(b64image)
     image_file: BytesIO = BytesIO(image_bytes)
