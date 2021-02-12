@@ -1,8 +1,8 @@
 syntax = "proto3";
 import "empty.proto";
 
-message FoodB64Image {
-  string b64image = 1;
+message BytesImage {
+  bytes image_content = 1;
 }
 
 message InferenceResult {
@@ -16,7 +16,7 @@ message ModelPath{
   string path = 1;
 }
 
-service InferenceFoodImage {
-  rpc Inference(FoodB64Image) returns (InferenceResult) {};
+service InferenceImage {
+  rpc Inference(BytesImage) returns (InferenceResult) {};
   rpc LoadModel(ModelPath) returns (Empty){};
 }
