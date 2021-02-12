@@ -20,25 +20,25 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0finference.proto\x1a\x0b\x65mpty.proto\" \n\x0c\x46oodB64Image\x12\x10\n\x08\x62\x36\x34image\x18\x01 \x01(\t\"a\n\x0fInferenceResult\x12\x14\n\x0cmodel_degree\x18\x01 \x01(\x05\x12\x13\n\x0b\x65xif_degree\x18\x02 \x01(\x05\x12\x12\n\nconfidence\x18\x03 \x01(\x02\x12\x0f\n\x07success\x18\x04 \x01(\x08\"\x19\n\tModelPath\x12\x0c\n\x04path\x18\x01 \x01(\t2g\n\x12InferenceFoodImage\x12.\n\tInference\x12\r.FoodB64Image\x1a\x10.InferenceResult\"\x00\x12!\n\tLoadModel\x12\n.ModelPath\x1a\x06.Empty\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0finference.proto\x1a\x0b\x65mpty.proto\"#\n\nBytesImage\x12\x15\n\rimage_content\x18\x01 \x01(\x0c\"a\n\x0fInferenceResult\x12\x14\n\x0cmodel_degree\x18\x01 \x01(\x05\x12\x13\n\x0b\x65xif_degree\x18\x02 \x01(\x05\x12\x12\n\nconfidence\x18\x03 \x01(\x02\x12\x0f\n\x07success\x18\x04 \x01(\x08\"\x19\n\tModelPath\x12\x0c\n\x04path\x18\x01 \x01(\t2a\n\x0eInferenceImage\x12,\n\tInference\x12\x0b.BytesImage\x1a\x10.InferenceResult\"\x00\x12!\n\tLoadModel\x12\n.ModelPath\x1a\x06.Empty\"\x00\x62\x06proto3'
   ,
   dependencies=[empty__pb2.DESCRIPTOR,])
 
 
 
 
-_FOODB64IMAGE = _descriptor.Descriptor(
-  name='FoodB64Image',
-  full_name='FoodB64Image',
+_BYTESIMAGE = _descriptor.Descriptor(
+  name='BytesImage',
+  full_name='BytesImage',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='b64image', full_name='FoodB64Image.b64image', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
+      name='image_content', full_name='BytesImage.image_content', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -55,7 +55,7 @@ _FOODB64IMAGE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=32,
-  serialized_end=64,
+  serialized_end=67,
 )
 
 
@@ -107,8 +107,8 @@ _INFERENCERESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=66,
-  serialized_end=163,
+  serialized_start=69,
+  serialized_end=166,
 )
 
 
@@ -139,21 +139,21 @@ _MODELPATH = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=165,
-  serialized_end=190,
+  serialized_start=168,
+  serialized_end=193,
 )
 
-DESCRIPTOR.message_types_by_name['FoodB64Image'] = _FOODB64IMAGE
+DESCRIPTOR.message_types_by_name['BytesImage'] = _BYTESIMAGE
 DESCRIPTOR.message_types_by_name['InferenceResult'] = _INFERENCERESULT
 DESCRIPTOR.message_types_by_name['ModelPath'] = _MODELPATH
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-FoodB64Image = _reflection.GeneratedProtocolMessageType('FoodB64Image', (_message.Message,), {
-  'DESCRIPTOR' : _FOODB64IMAGE,
+BytesImage = _reflection.GeneratedProtocolMessageType('BytesImage', (_message.Message,), {
+  'DESCRIPTOR' : _BYTESIMAGE,
   '__module__' : 'inference_pb2'
-  # @@protoc_insertion_point(class_scope:FoodB64Image)
+  # @@protoc_insertion_point(class_scope:BytesImage)
   })
-_sym_db.RegisterMessage(FoodB64Image)
+_sym_db.RegisterMessage(BytesImage)
 
 InferenceResult = _reflection.GeneratedProtocolMessageType('InferenceResult', (_message.Message,), {
   'DESCRIPTOR' : _INFERENCERESULT,
@@ -171,29 +171,29 @@ _sym_db.RegisterMessage(ModelPath)
 
 
 
-_INFERENCEFOODIMAGE = _descriptor.ServiceDescriptor(
-  name='InferenceFoodImage',
-  full_name='InferenceFoodImage',
+_INFERENCEIMAGE = _descriptor.ServiceDescriptor(
+  name='InferenceImage',
+  full_name='InferenceImage',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=192,
-  serialized_end=295,
+  serialized_start=195,
+  serialized_end=292,
   methods=[
   _descriptor.MethodDescriptor(
     name='Inference',
-    full_name='InferenceFoodImage.Inference',
+    full_name='InferenceImage.Inference',
     index=0,
     containing_service=None,
-    input_type=_FOODB64IMAGE,
+    input_type=_BYTESIMAGE,
     output_type=_INFERENCERESULT,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
     name='LoadModel',
-    full_name='InferenceFoodImage.LoadModel',
+    full_name='InferenceImage.LoadModel',
     index=1,
     containing_service=None,
     input_type=_MODELPATH,
@@ -202,8 +202,8 @@ _INFERENCEFOODIMAGE = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
 ])
-_sym_db.RegisterServiceDescriptor(_INFERENCEFOODIMAGE)
+_sym_db.RegisterServiceDescriptor(_INFERENCEIMAGE)
 
-DESCRIPTOR.services_by_name['InferenceFoodImage'] = _INFERENCEFOODIMAGE
+DESCRIPTOR.services_by_name['InferenceImage'] = _INFERENCEIMAGE
 
 # @@protoc_insertion_point(module_scope)

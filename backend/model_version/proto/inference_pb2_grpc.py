@@ -6,7 +6,7 @@ import proto.empty_pb2 as empty__pb2
 import proto.inference_pb2 as inference__pb2
 
 
-class InferenceFoodImageStub(object):
+class InferenceImageStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -16,18 +16,18 @@ class InferenceFoodImageStub(object):
             channel: A grpc.Channel.
         """
         self.Inference = channel.unary_unary(
-                '/InferenceFoodImage/Inference',
-                request_serializer=inference__pb2.FoodB64Image.SerializeToString,
+                '/InferenceImage/Inference',
+                request_serializer=inference__pb2.BytesImage.SerializeToString,
                 response_deserializer=inference__pb2.InferenceResult.FromString,
                 )
         self.LoadModel = channel.unary_unary(
-                '/InferenceFoodImage/LoadModel',
+                '/InferenceImage/LoadModel',
                 request_serializer=inference__pb2.ModelPath.SerializeToString,
                 response_deserializer=empty__pb2.Empty.FromString,
                 )
 
 
-class InferenceFoodImageServicer(object):
+class InferenceImageServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def Inference(self, request, context):
@@ -43,11 +43,11 @@ class InferenceFoodImageServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_InferenceFoodImageServicer_to_server(servicer, server):
+def add_InferenceImageServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Inference': grpc.unary_unary_rpc_method_handler(
                     servicer.Inference,
-                    request_deserializer=inference__pb2.FoodB64Image.FromString,
+                    request_deserializer=inference__pb2.BytesImage.FromString,
                     response_serializer=inference__pb2.InferenceResult.SerializeToString,
             ),
             'LoadModel': grpc.unary_unary_rpc_method_handler(
@@ -57,12 +57,12 @@ def add_InferenceFoodImageServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'InferenceFoodImage', rpc_method_handlers)
+            'InferenceImage', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class InferenceFoodImage(object):
+class InferenceImage(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -76,8 +76,8 @@ class InferenceFoodImage(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/InferenceFoodImage/Inference',
-            inference__pb2.FoodB64Image.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/InferenceImage/Inference',
+            inference__pb2.BytesImage.SerializeToString,
             inference__pb2.InferenceResult.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -93,7 +93,7 @@ class InferenceFoodImage(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/InferenceFoodImage/LoadModel',
+        return grpc.experimental.unary_unary(request, target, '/InferenceImage/LoadModel',
             inference__pb2.ModelPath.SerializeToString,
             empty__pb2.Empty.FromString,
             options, channel_credentials,

@@ -47,13 +47,14 @@ class ModelVersionServicer(model_version_pb2_grpc.ModelVersionServicer):
             return None
 
         # TODO : dl_server 구현 되면, 주석 제거하기.
-        # model_version = await get_using_model_version()
-        # response, error_message = await load_model_in_dl_api(path=model_version.model_path, access_token=access_token)
-        # if not response:
-        #     msg = "Change using model version in db, But could not change model in dl server"
-        #     context.set_details(msg)
-        #     context.set_code(grpc.StatusCode.ABORTED)
-        #     return None
+        model_version = await get_using_model_version()
+        response, error_message = await load_model_in_dl_api(path=model_version.model_file_name,
+                                                             access_token=access_token)
+        if not response:
+            msg = "Change using model version in db, But could not change model in dl server"
+            context.set_details(msg)
+            context.set_code(grpc.StatusCode.ABORTED)
+            return Empty()
         return Empty()
 
 
