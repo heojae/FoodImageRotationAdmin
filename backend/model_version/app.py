@@ -35,7 +35,7 @@ class ModelVersionServicer(model_version_pb2_grpc.ModelVersionServicer):
                                                      is_using=model_version.is_using)
 
     async def Change(self, request: model_version_pb2.SelectedModelVersion, context: grpc.aio.ServicerContext) \
-            -> model_version_pb2.ModelVersionInfo:
+            -> Empty:
         print("change")
         access_token = get_access_token_from_context(context=context)
 
@@ -44,16 +44,18 @@ class ModelVersionServicer(model_version_pb2_grpc.ModelVersionServicer):
             msg = "Invalid model version pk come"
             context.set_details(msg)
             context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
-            return None
+            return Empty()
 
         # TODO : dl_server 구현 되면, 주석 제거하기.
-        # model_version = await get_using_model_version()
-        # response, error_message = await load_model_in_dl_api(path=model_version.model_path, access_token=access_token)
-        # if not response:
-        #     msg = "Change using model version in db, But could not change model in dl server"
-        #     context.set_details(msg)
-        #     context.set_code(grpc.StatusCode.ABORTED)
-        #     return None
+        model_version = await get_using_model_version()
+        response, error_message = await load_model_in_dl_api(path=model_version.model_file_name,
+                                                             access_token=access_token)
+        if not response:
+            msg = "Change using model version in db, But could not change model in dl server"
+            context.set_details(msg)
+            context.set_code(grpc.StatusCode.ABORTED)
+            return Empty()
+
         return Empty()
 
 
