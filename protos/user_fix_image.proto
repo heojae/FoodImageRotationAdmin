@@ -1,8 +1,8 @@
 syntax = "proto3";
 import "empty.proto";
 
-message UserFixedB64ImageInfo {
-  string b64image = 1;
+message UserFixedImageInfo {
+  bytes image_content = 1;
   string file_name = 2;
   int32 exif_degree = 3;
   int32 model_degree = 4;
@@ -11,5 +11,5 @@ message UserFixedB64ImageInfo {
 }
 
 service UserFixImage {
-  rpc SaveUserFixImage(UserFixedB64ImageInfo) returns (Empty) {};
+  rpc SaveUserFixImage(UserFixedImageInfo) returns (Empty) {};
 }
