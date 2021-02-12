@@ -22,7 +22,7 @@ async def change_using_model_version(pk: int) -> None:
 
 async def load_model_in_dl_api(path: str, access_token) -> Tuple[Empty or None, str]:
     async with grpc.aio.insecure_channel(settings.dl_api_listen_addr) as channel:
-        stub: inference_pb2_grpc.InferenceFoodImageStub = inference_pb2_grpc.InferenceFoodImageStub(channel)
+        stub: inference_pb2_grpc.InferenceImageStub = inference_pb2_grpc.InferenceImageStub(channel)
         metadata = (('access_token', access_token),)
         error_message = ""
         try:
