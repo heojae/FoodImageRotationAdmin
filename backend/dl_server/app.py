@@ -1,4 +1,3 @@
-import os
 import grpc
 import logging
 import PIL
