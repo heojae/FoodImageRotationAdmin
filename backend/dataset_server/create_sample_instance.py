@@ -42,6 +42,8 @@ async def create_db_base_sample_instance():
     await asyncio.gather(
         database.execute(query_image_info_1),
         database.execute(query_image_info_2),
+        database.execute(query_image_info_3),
+        database.execute(query_image_info_4),
     )
 
     # -------------------------------- Finish ImageInfo Instance  ----------------------------

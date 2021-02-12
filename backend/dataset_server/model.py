@@ -86,9 +86,9 @@ if __name__ == '__main__':
     sample_dataset_info_detail = asyncio.run(DatasetInfo.detail(pk=1))
     sample_dataset_info_get_image_list = asyncio.run(DatasetInfo.get_image_list(pk=1))
     sample_image_info_list = asyncio.run(ImageInfo.list())
+
     sample_image_info_detail = asyncio.run(ImageInfo.detail(pk=1))
     sample_get_last_dataset_info = asyncio.run(DatasetInfo.get_last_dataset_info())
-    print("sample_get_last_dataset_info", sample_get_last_dataset_info)
 
     # sample_image_info_delete = asyncio.run(ImageInfo.delete(pk=1))
     image_info_dict1 = {
@@ -102,4 +102,4 @@ if __name__ == '__main__':
     }
     # sample_image_info_insert = asyncio.run(ImageInfo.insert(info_dict=image_info_dict1))
     # sample_dataset_info_insert = asyncio.run(DatasetInfo.insert())
-    # sample_dataset_info_update = asyncio.run(DatasetInfo.update(pk=1, title="1_title", comment="1_comment"))
+    # sample_dataset_info_update = asyncio.run(DatasetInfo.update(pk=1, title="1_title"))
