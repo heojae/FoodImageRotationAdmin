@@ -40,7 +40,7 @@ class UserServicer(user_pb2_grpc.UserServicer):
         msg = "Invalid email or password come"
         context.set_details(msg)
         context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
-        return user_pb2.UserInfo()
+        return None
 
     async def AuthenticateGetUserInfo(self, request: Empty, context: grpc.aio.ServicerContext) -> user_pb2.UserInfo:
         print("AuthenticateGetUserInfo")
@@ -54,7 +54,7 @@ class UserServicer(user_pb2_grpc.UserServicer):
         msg = "Invalid access_token come"
         context.set_details(msg)
         context.set_code(grpc.StatusCode.UNAUTHENTICATED)
-        return user_pb2.UserInfo()
+        return None
 
     async def Authenticate(self, request: Empty, context: grpc.aio.ServicerContext) -> empty_pb2.Empty:
         global redis
@@ -68,7 +68,7 @@ class UserServicer(user_pb2_grpc.UserServicer):
         msg = "Invalid access_token come"
         context.set_details(msg)
         context.set_code(grpc.StatusCode.UNAUTHENTICATED)
-        return empty_pb2.Empty()
+        return None
 
 
 async def serve() -> None:
