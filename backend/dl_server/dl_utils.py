@@ -1,3 +1,4 @@
+import os
 import collections
 import torch
 import torch.nn.functional as F
@@ -29,15 +30,17 @@ def copy_state_dict_for_data_parallel_trained_model(state_dict: collections.Orde
     return new_state_dict
 
 
-def load_model_weight_from_tar(model: FiraEfficientNet, tar_path: str):
+def load_model_weight_from_tar(model: FiraEfficientNet, tar_file_name: str):
     device = torch.device('cpu')
+    tar_path = os.path.join("./weight", tar_file_name)
     checkpoint = torch.load(tar_path, map_location=device)
     model.load_state_dict(copy_state_dict_for_data_parallel_trained_model(checkpoint['state_dict']))
     return model
 
 
-def load_model_weight_from_pth(model: FiraEfficientNet, model_path: str):
+def load_model_weight_from_pth(model: FiraEfficientNet, model_file_name: str):
     device = torch.device('cpu')
+    model_path = os.path.join("./weight", model_file_name)
     checkpoint = torch.load(model_path, map_location=device)
     model.load_state_dict(copy_state_dict_for_data_parallel_trained_model(checkpoint))
     return model
@@ -58,7 +61,6 @@ def transform_pil_image2tensor_image(image: PIL.Image.Image) -> torch.Tensor:
 def inference_image(model: FiraEfficientNet, image: PIL.Image.Image) -> Tuple[int, float]:
     tensor_image: torch.Tensor = transform_pil_image2tensor_image(image=image)  # [1, 3, 224, 224]
 
-    # TODO : 이거, softmax 전후 한번 비교해본다.
     with torch.no_grad():
         output = model(tensor_image)  # [1, 4], inference_time : 0.20484089851379395
 
