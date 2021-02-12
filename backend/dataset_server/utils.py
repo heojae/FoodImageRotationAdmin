@@ -1,6 +1,3 @@
-import base64
-
-from io import BytesIO
 from typing import Dict, List
 
 from model import DatasetInfo, ImageInfo
@@ -36,9 +33,3 @@ async def update_dataset_info(pk: int, title: str) -> int:
 
 async def delete_image_info(pk: int):
     return await ImageInfo.delete(pk=pk)
-
-
-async def convert_b64image2bytes_io(b64image: str) -> BytesIO:
-    image_bytes: bytes = base64.b64decode(b64image)
-    image_file: BytesIO = BytesIO(image_bytes)
-    return image_file

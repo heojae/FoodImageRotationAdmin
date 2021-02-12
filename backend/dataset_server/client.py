@@ -4,7 +4,6 @@ import grpc
 import logging
 import PIL
 
-from proto.empty_pb2 import Empty
 from io import BytesIO
 from PIL import Image
 from typing import List
@@ -12,6 +11,7 @@ from typing import List
 from config import settings
 from proto import dataset_pb2, dataset_pb2_grpc
 from proto import user_fix_image_pb2, user_fix_image_pb2_grpc
+from proto.empty_pb2 import Empty
 
 
 async def get_dataset_info_list() -> List[dataset_pb2.DatasetInfo]:

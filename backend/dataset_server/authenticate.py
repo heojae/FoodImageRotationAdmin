@@ -4,7 +4,7 @@ from proto.empty_pb2 import Empty
 from typing import Awaitable, Callable, List, Tuple
 
 from config import settings
-from proto import user_pb2, user_pb2_grpc
+from proto import user_pb2_grpc
 
 
 class AuthenticateUserAccessToken(grpc.aio.ServerInterceptor):

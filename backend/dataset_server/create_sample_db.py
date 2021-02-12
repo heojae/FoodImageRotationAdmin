@@ -5,8 +5,6 @@ from sqlalchemy.ext.declarative import declarative_base
 
 from config import settings
 
-engine = create_engine(settings.dataset_db_end_point, echo=True)
-
 Base = declarative_base()
 
 
@@ -32,4 +30,5 @@ class ImageInfo(Base):
 
 
 if __name__ == '__main__':
+    engine = create_engine(settings.dataset_db_end_point, echo=True)
     Base.metadata.create_all(engine)
