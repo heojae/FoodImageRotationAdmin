@@ -25,10 +25,6 @@ async def get_model_version_list() -> List[model_version_pb2.ModelVersionInfo]:
 
         model_version_list: List[model_version_pb2.ModelVersionInfo] = []
         async for model_version in stub.GetAllModelVersion(Empty(), metadata=metadata):
-            #    TODO: 위의 방법 이해하고, 이게 왜 되는지 설명을 할 수 있어야 한다. async_generator
-            #     해답 참조 링크: https://pypi.org/project/purerpc/
-            #     참조 권유: https://hwangheek.github.io/2019/asynchronous-python/
-            #             https://www.python.org/dev/peps/pep-0525/
             model_version_list.append(model_version)
         return model_version_list
 
@@ -47,8 +43,5 @@ async def change(pk: int) -> model_version_pb2.ModelVersionInfo:
 if __name__ == '__main__':
     logging.basicConfig()
     sample_get_using_model = asyncio.run(get_using_model())
-    print("sample_get_using_model", sample_get_using_model)
     sample_get_model_version_list = asyncio.run(get_model_version_list())
-    print("sample_get_model_version_list", sample_get_model_version_list)
     sample_change = asyncio.run(change(pk=6))
-    print("sample_change", sample_change)
