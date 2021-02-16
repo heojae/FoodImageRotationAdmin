@@ -1,9 +1,6 @@
 import React, {Component} from "react"
-import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom';
 import Cookies from "universal-cookie";
-
-import * as actions from "../../../actions";
 
 import {login} from "./API"
 
@@ -31,6 +28,10 @@ class LoginMainForm extends Component {
             cookies.set("access_token", access_token);
             this.props.history.push("/")
         }
+        else {
+            alert("invalid email or password")
+        }
+
 
 
     }
@@ -73,18 +74,6 @@ class LoginMainFormSubmit extends React.Component {
 }
 
 
-const mapStateToProps = (state) => {
-    return {}
-}
-const mapDispatchToProps = (dispatch) => {
-    return {
-        handleSetUserInfo: (pk, email, profile_image, access_token) => {
-            dispatch(actions.setUserInfo(pk, email, profile_image, access_token))
-        }
-    }
-}
-
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginMainForm));
+export default withRouter(LoginMainForm);
 
 
