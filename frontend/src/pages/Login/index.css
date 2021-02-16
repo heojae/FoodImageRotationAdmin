@@ -1,0 +1,29 @@
+:root {
+    --Login_global_bg_color: #1c1c1c;
+
+    --Login-header_margin_top: 15vh;
+    --Login-header_margin_bottom: 5vh;
+    --Login-header_font_size: 48px;
+    --Login-header_font_color: #FFFFFF;
+}
+
+
+.Login {
+    background-color: var(--Login_global_bg_color);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+
+.Login-header {
+    margin-top: var(--Login-header_margin_top);
+    margin-bottom: var(--Login-header_margin_bottom);
+
+    font-size: var(--Login-header_font_size);
+    color: var(--Login-header_font_color);
+}
