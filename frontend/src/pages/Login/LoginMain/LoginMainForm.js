@@ -2,11 +2,15 @@ import React, {Component} from "react"
 import {connect} from "react-redux";
 
 import * as actions from "../../../actions";
+import {login} from "./API"
+import {client_user} from "./API/client";
+import {bool} from "prop-types";
+
 
 class LoginMainForm extends Component {
     constructor(props) {
         super(props);
-        this.sendToServer= this.sendToServer.bind(this)
+        this.sendToServer = this.sendToServer.bind(this)
     }
 
 
@@ -15,8 +19,12 @@ class LoginMainForm extends Component {
         const email = event.target.email.value;
         const password = event.target.password.value;
         const metadata = {};
-        console.log("email : ", email)
-        console.log("password : ", password)
+
+        const response = await login(client_user, email, password, metadata);
+        if (Boolean(response)){
+            console.log("aaaaaa")
+        }
+
 
     }
 
@@ -56,8 +64,6 @@ class LoginMainFormSubmit extends React.Component {
         )
     }
 }
-
-
 
 
 const mapStateToProps = (state) => {

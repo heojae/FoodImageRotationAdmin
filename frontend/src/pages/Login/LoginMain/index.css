@@ -31,6 +31,7 @@
 
     --Login-main-form-submit-button_width: 200px;
     --Login-main-form-submit-button_height: 50px;
+    --Login-main-form-submit-button_font_size: 24px;
 }
 
 .Login-main{
@@ -82,4 +83,6 @@
 .Login-main-form-submit-button {
     width: var(--Login-main-form-submit-button_width);
     height: var(--Login-main-form-submit-button_height);
+
+    font-size: var(--Login-main-form-submit-button_font_size);
 }
