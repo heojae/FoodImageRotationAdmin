@@ -1,10 +1,11 @@
 import React, {Component} from "react"
 import {connect} from "react-redux";
+import {withRouter} from 'react-router-dom';
+import Cookies from "universal-cookie";
 
 import * as actions from "../../../actions";
+
 import {login} from "./API"
-import {client_user} from "./API/client";
-import {bool} from "prop-types";
 
 
 class LoginMainForm extends Component {
@@ -20,9 +21,15 @@ class LoginMainForm extends Component {
         const password = event.target.password.value;
         const metadata = {};
 
-        const response = await login(client_user, email, password, metadata);
-        if (Boolean(response)){
-            console.log("aaaaaa")
+        const response = await login(email, password, metadata);
+
+
+        if (Boolean(response)) {
+            const [pk, email, profile_image, access_token] = response;
+            this.props.handleSetUserInfo(pk, email, profile_image, access_token);
+            const cookies = new Cookies();
+            cookies.set("access_token", access_token);
+            this.props.history.push("/")
         }
 
 
@@ -67,12 +74,7 @@ class LoginMainFormSubmit extends React.Component {
 
 
 const mapStateToProps = (state) => {
-    return {
-        pk: state.user.pk,
-        email: state.user.email,
-        profile_image: state.user.profile_image,
-        access_token: state.user.access_token,
-    }
+    return {}
 }
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -83,6 +85,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginMainForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginMainForm));
 
 
