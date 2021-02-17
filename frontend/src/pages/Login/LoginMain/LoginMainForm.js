@@ -20,20 +20,15 @@ class LoginMainForm extends Component {
 
         const response = await login(email, password, metadata);
 
-
-        if (Boolean(response)) {
+        if (response) {
             const [pk, email, profile_image, access_token] = response;
             this.props.handleSetUserInfo(pk, email, profile_image, access_token);
             const cookies = new Cookies();
             cookies.set("access_token", access_token);
             this.props.history.push("/")
+        } else {
+            alert("invalid email or password come")
         }
-        else {
-            alert("invalid email or password")
-        }
-
-
-
     }
 
     render() {

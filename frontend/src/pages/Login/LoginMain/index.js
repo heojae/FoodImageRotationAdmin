@@ -1,13 +1,11 @@
 import React, {Component} from "react"
-
+import {connect} from "react-redux";
+import * as actions from "../../../actions";
 
 import LoginMainTitle from "./LoginMainTitle";
 import LoginMainForm from "./LoginMainForm";
-
 import "./index.css"
-import * as actions from "../../../actions";
-import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
+
 
 class LoginMain extends Component {
     render() {
