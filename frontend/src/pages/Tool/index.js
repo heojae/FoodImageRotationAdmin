@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 
 import "./index.css"
 import ToolHeader from "./ToolHeader";
-
+import ToolMiddle from "./ToolMiddle";
 
 import * as actions from "../../actions";
 import {getUserInfoWithToken} from "./API";
@@ -38,6 +38,7 @@ class Tool extends Component {
         return (
             <div className={"Tool"}>
                 <ToolHeader/>
+                <ToolMiddle/>
             </div>
         )
     }
