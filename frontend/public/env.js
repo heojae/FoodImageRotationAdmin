@@ -197,5 +197,6 @@ window.env = {
   "npm_config_link": "",
   "npm_config_format_package_lock": "true",
   "npm_config_prefix": "/usr/local",
-  "server_url": "http://localhost:8080"
+  "server_url": "http://localhost:8080",
+  "media_url": "http://localhost:50050"
 };

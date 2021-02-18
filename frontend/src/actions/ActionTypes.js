@@ -1,6 +1,8 @@
 // --------------- user info ----------------
 export const SET_USER_INFO = "SET_USER_INFO";
 
+// --------------- set sidebar show or not ----------------
+export const SET_SIDEBAR_SHOW_OR_NOT = "SET_SIDEBAR_SHOW_OR_NOT";
 
 // --------------- tool choice ----------------
 export const SET_TOOL_MODE = "SET_TOOL_MODE";

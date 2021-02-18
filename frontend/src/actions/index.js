@@ -11,6 +11,14 @@ export function setUserInfo(pk, email, profile_image, access_token) {
     }
 }
 
+// ------------------------------------------ sidebar show or not -------------------------------------------
+export function setSidebarShowOrNot() {
+    return {
+        type: types.SET_SIDEBAR_SHOW_OR_NOT
+    }
+}
+
+
 // ------------------------------------------ tool choice -------------------------------------------
 export function setToolMode(mode) {
     return {
