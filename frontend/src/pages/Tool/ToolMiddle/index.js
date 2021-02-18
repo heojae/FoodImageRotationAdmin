@@ -1,9 +1,15 @@
 import React, {Component} from "react"
 
+import ToolSidebar from "./ToolSidebar";
 
 class ToolMiddle extends Component {
     render() {
-        return (<div> ToolMiddle </div>)
+        return (
+            <div>
+                ToolMiddle
+                <ToolSidebar/>
+            </div>
+        )
     }
 
 }
