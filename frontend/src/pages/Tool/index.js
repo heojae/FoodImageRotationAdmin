@@ -1,9 +1,16 @@
+// TODO : ToolHeader 부분이제 구현하면 된다.
 import React, {Component} from "react"
 import Cookies from "universal-cookie";
 import {withRouter} from 'react-router-dom';
-import {getUserInfoWithToken} from "./API";
-import * as actions from "../../actions";
 import {connect} from "react-redux";
+
+import "./index.css"
+import ToolHeader from "./ToolHeader";
+
+
+import * as actions from "../../actions";
+import {getUserInfoWithToken} from "./API";
+
 
 class Tool extends Component {
     constructor(props) {
@@ -28,7 +35,11 @@ class Tool extends Component {
     }
 
     render() {
-        return (<div> Tool </div>)
+        return (
+            <div className={"Tool"}>
+                <ToolHeader/>
+            </div>
+        )
     }
 }
 
