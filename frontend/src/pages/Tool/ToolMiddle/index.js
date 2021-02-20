@@ -4,6 +4,7 @@ import * as actions from "../../../actions";
 import "./index.css"
 
 import ToolSidebar from "./ToolSidebar";
+import ToolMain from "./ToolMain";
 
 class ToolMiddle extends Component {
     constructor(props) {
@@ -19,7 +20,7 @@ class ToolMiddle extends Component {
         return (
             <div className={"Tool-middle"}>
                 <ToolSidebar />
-                <div>Tool Main</div>
+                <ToolMain/>
             </div>
         )
     }
