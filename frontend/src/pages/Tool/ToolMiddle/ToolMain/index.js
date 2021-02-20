@@ -1,4 +1,7 @@
 import React, {Component} from "react";
+import {connect} from "react-redux";
+import "./index.css"
+
 import RunDemo from "./RunDemo";
 import DataCollect from "./DataCollect";
 import ModelVersion from "./ModelVersion";
@@ -7,7 +10,7 @@ import ModelVersion from "./ModelVersion";
 class ToolMain extends Component {
     render() {
         return (
-            <div>
+            <div className={"Tool-main"}>
                 <RunDemo/>
                 <DataCollect/>
                 <ModelVersion/>
@@ -17,4 +20,13 @@ class ToolMain extends Component {
     }
 }
 
-export default ToolMain
+
+const mapStateToProps = (state) => {
+    return {}
+}
+const mapDispatchToProps = (dispatch) => {
+    return {};
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToolMain);
