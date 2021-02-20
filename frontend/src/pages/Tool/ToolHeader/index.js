@@ -33,7 +33,7 @@ class ToolHeaderSidebarButton extends React.Component {
     render() {
         return (
             <Button className="Tool-header-sidebar_button"
-                    style={{width: "75px", height: "75px", background: "#1c1c1c", border: "None"}}
+                    style={{width: "75px", height: "75px", background: "#434a5e", border: "None"}}
                     onClick={this.sidebarShowOrNot}>
 
                 <MenuOutlined style={{fontSize: "40px", color: "#FFFFFF"}}/>
