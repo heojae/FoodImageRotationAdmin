@@ -13,7 +13,7 @@ class RunDemo extends Component {
 
 
     render() {
-        const show_or_not = this.props.mode === "RunDemo";
+        const show_or_not = this.props.tool_mode === "RunDemo";
 
         return (
             <div className={"Tool-main-run_demo"} style={{display: show_or_not ? "block" : "none"}}>
@@ -27,7 +27,7 @@ class RunDemo extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        mode: state.tool.mode
+        tool_mode: state.tool.mode
     }
 }
 const mapDispatchToProps = (dispatch) => {

@@ -13,7 +13,7 @@ class ModelVersion extends Component {
     // }
 
     render() {
-        const show_or_not = this.props.mode === "ModelVersion";
+        const show_or_not = this.props.tool_mode === "ModelVersion";
 
         return (
             <div className={"Tool-main-model_version"} style={{display: show_or_not ? "block" : "none"}}>
@@ -27,7 +27,7 @@ class ModelVersion extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        mode: state.tool.mode
+        tool_mode: state.tool.mode
     }
 }
 const mapDispatchToProps = (dispatch) => {

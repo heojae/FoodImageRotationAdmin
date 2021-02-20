@@ -12,7 +12,7 @@ class DataCollect extends Component {
     // }
 
     render() {
-        const show_or_not = this.props.mode === "DataCollect";
+        const show_or_not = this.props.tool_mode === "DataCollect";
         return (
             <div className={"Tool-main-data_collect"} style={{display: show_or_not ? "block" : "none"}}>
                 <ToolMainTitle title={"DATA Collection of Food Image Rotation"}
@@ -26,7 +26,7 @@ class DataCollect extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        mode: state.tool.mode
+        tool_mode: state.tool.mode
     }
 }
 const mapDispatchToProps = (dispatch) => {
