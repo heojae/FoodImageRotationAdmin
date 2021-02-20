@@ -1,13 +1,13 @@
 import React, {Component} from "react";
 import ToolMainTitle from "../ToolMainTitle";
 import {connect} from "react-redux";
-import Dropzone from "./DropZone";
+import DropZone from "./DropZone";
+import * as actions from "../../../../../actions";
 
 class RunDemo extends Component {
     constructor(props) {
         super(props);
     }
-
 
 
     render() {
@@ -17,7 +17,7 @@ class RunDemo extends Component {
             <div className={"Tool-main-run_demo"} style={{display: show_or_not ? "block" : "none"}}>
                 <ToolMainTitle title={"Food Image Rotation Detector[API]"}
                                docs={"음식 이미지들을 올리고, EXIF DATA Degree 와 model 의 Rotation Degree 를 고려한 회전된 이미지가 나옵니다. "}/>
-            <Dropzone/>
+                <DropZone handleSetRunDemoFileList={this.props.handleSetRunDemoFileList}/>
 
             </div>
         )
@@ -37,7 +37,11 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        handleSetRunDemoFileList: (file_list) => {
+            dispatch(actions.setRunDemoFileList(file_list))
+        }
+    };
 }
 
 

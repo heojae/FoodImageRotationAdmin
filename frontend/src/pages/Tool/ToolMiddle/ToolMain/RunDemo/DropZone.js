@@ -1,11 +1,7 @@
 import React, {useRef, useState, useEffect} from 'react';
 import "./DropZone.css"
 
-
-
-
-
-const Dropzone = (props) => {
+const DropZone = (props) => {
     const fileInputRef = useRef();
 
     const [selectedFiles, setSelectedFiles] = useState([]);
@@ -59,43 +55,20 @@ const Dropzone = (props) => {
     const fileInputClicked = () => {
         fileInputRef.current.click();
     }
-    // TODO : 이 부분에 집중해서 보자.
-    const readFileToEncodedStringAsync = (file) => {
-        return new Promise((resolve, reject) => {
-            let reader = new FileReader();
-            reader.onload = function (e) {
-                let arrayBufferView = new Uint8Array(e.target.result);
-                let FoodB64Image = new Buffer(arrayBufferView).toString('base64');
-                resolve(FoodB64Image);
-            };
-            reader.onerror = reject;
-            reader.readAsArrayBuffer(file);
-        })
-    }
-    // TODO : 이 부분에 집중해서 보자.
+
     const handleFiles = async (files) => {
-        const file_list = []
-        console.log(files)
+        const file_list = [];
         for (let i = 0; i < files.length; i++) {
             if (validateFile(files[i])) {
-                console.log(files[i].value)
-
                 let blob = new Blob([files[i]]);
-                console.log(blob)
-
-
-                let B64Image = await readFileToEncodedStringAsync(files[i])
-                let temp_file = {file_name: files[i].name, B64Image}
-                file_list.push(temp_file)
-            } else {
-                console.log("file is failed : ", files[i])
+                file_list.push({file: files[i], blob: blob});
             }
         }
-        // props.handleSetFileList(file_list)
+        props.handleSetRunDemoFileList(file_list)
     }
 
     const validateFile = (file) => {
-        const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/x-icon'];
+        const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
         if (validTypes.indexOf(file.type) === -1) {
             return false;
         }
@@ -135,6 +108,6 @@ const Dropzone = (props) => {
     );
 }
 
-export default Dropzone;
+export default DropZone;
 
 
