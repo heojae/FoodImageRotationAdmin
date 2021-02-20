@@ -1,7 +1,7 @@
 import React, {useRef, useState, useEffect} from 'react';
 import "./DropZone.css"
 
-const DropZone = (props) => {
+const DropZone = React.memo((props) => {
     const fileInputRef = useRef();
 
     const [selectedFiles, setSelectedFiles] = useState([]);
@@ -79,9 +79,8 @@ const DropZone = (props) => {
         return true;
     }
 
-
     return (
-        <>
+        <div>
             <div className="container">
                 <div className="drop-container"
                      onDragOver={dragOver}
@@ -104,9 +103,11 @@ const DropZone = (props) => {
             </div>
 
 
-        </>
+        </div>
     );
-}
+}, (prevProps, nextProps) => {
+    return true;
+});
 
 export default DropZone;
 
