@@ -27,7 +27,9 @@ class RunDemo extends Component {
 
                 <ChoiceMode handleSetRunDemoMode={this.props.handleSetRunDemoMode}/>
 
-                <CheckResult mode={this.props.mode}/>
+                <CheckResult mode={this.props.mode} file_list={this.props.file_list}
+                             is_file_list_change={this.props.is_file_list_change}/>
+
                 <FixData mode={this.props.mode}/>
 
             </div>

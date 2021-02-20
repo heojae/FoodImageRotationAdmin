@@ -53,20 +53,66 @@
 
 /*-------------  CheckResult and FixData  ------------------*/
 
-.Tool-main-run_demo-check_result {
+.Tool-main-run_demo-output {
     display: flex;
     flex-direction: column;
     text-align: center;
+
+    height: auto;
+
 }
 
-.Tool-main-run_demo-fix_data {
+.Tool-main-run_demo-output-line-title {
+    display: flex;
+    flex-direction: row;
+
+    width: 1200px;
+    height: 50px;
+    margin-top: 20px;
+
+    border: black 1px solid;
+}
+
+.Tool-main-run_demo-output-line-title-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 200px;
+    height: 50px;
+
+    font-size: 16px;
+}
+
+
+/*-------------  CheckResult Output ------------------*/
+.Tool-main-run_demo-output-line-body {
     display: flex;
     flex-direction: column;
-    text-align: center;
+    width: 1200px;
+    height: auto;
 }
 
+.Tool-main-run_demo-output-line-body-one_line {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
+    width: 1200px;
+    height: 200px;
+}
 
+.Tool-main-run_demo-output-line-body-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 200px;
+    height: 200px;
+
+    border: 1px solid #282c34;
+}
 
 
 
