@@ -1,5 +1,4 @@
 import React, {useRef, useState, useEffect} from 'react';
-import "./DropZone.css"
 
 const DropZone = React.memo((props) => {
     const fileInputRef = useRef();
@@ -80,21 +79,21 @@ const DropZone = React.memo((props) => {
     }
 
     return (
-        <div>
-            <div className="container">
-                <div className="drop-container"
+        <div className={"Tool-main-run_demo-dropzone-flex"}>
+            <div className="Tool-main-run_demo-dropzone">
+                <div className="Tool-main-run_demo-dropzone-container"
                      onDragOver={dragOver}
                      onDragEnter={dragEnter}
                      onDragLeave={dragLeave}
                      onDrop={fileDrop}
                      onClick={fileInputClicked}
                 >
-                    <div className="drop-message">
+                    <div className="Tool-main-run_demo-dropzone-container-message">
                         Drag & Drop files here or click to select file(s)
                     </div>
                     <input
                         ref={fileInputRef}
-                        className="file-input"
+                        className="Tool-main-run_demo-dropzone-container-file_input"
                         type="file"
                         multiple
                         onChange={filesSelected}

@@ -1,0 +1,72 @@
+/* ------------  DropZone  -----------------*/
+.Tool-main-run_demo-dropzone-flex {
+    display: flex;
+    justify-content: center;
+}
+
+.Tool-main-run_demo-dropzone {
+    margin-top: 50px;
+}
+
+.Tool-main-run_demo-dropzone-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    width: 800px;
+    height: 200px;
+    border: 4px dashed #4aa1f3;
+}
+
+.Tool-main-run_demo-dropzone-container-message {
+    text-align: center;
+    color: #4aa1f3;
+    font-size: 20px;
+}
+
+.Tool-main-run_demo-dropzone-container-file_input {
+    display: none;
+}
+
+
+/*-------------  Choice Mode  ------------------*/
+
+
+.Tool-main-run_demo-choice_mode-container {
+    display: flex;
+    justify-content: center;
+
+    width: 1200px;
+    height: 75px;
+
+    margin-top: 50px;
+}
+
+.Tool-main-run_demo-choice_mode {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: 100%;
+
+}
+
+/*-------------  CheckResult and FixData  ------------------*/
+
+.Tool-main-run_demo-check_result {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.Tool-main-run_demo-fix_data {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+
+
+
+
