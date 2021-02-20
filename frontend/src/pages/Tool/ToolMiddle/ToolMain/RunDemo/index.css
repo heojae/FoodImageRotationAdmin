@@ -103,7 +103,7 @@
     height: 200px;
 }
 
-.Tool-main-run_demo-output-line-body-item{
+.Tool-main-run_demo-output-line-body-item {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,7 +111,18 @@
     width: 200px;
     height: 200px;
 
-    border: 1px solid #282c34;
+    /*border: 1px solid #282c34;*/
+}
+
+.Tool-main-run_demo-output-line-body-item-text {
+    font-size: 20px;
+}
+
+
+.Tool-main-run_demo-output-line-body-item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 

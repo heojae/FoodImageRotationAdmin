@@ -10,7 +10,9 @@ class CheckResult extends Component {
             <div className={"Tool-main-run_demo-output"} style={{display: show_or_not ? "block" : "none"}}>
                 <RunDemoCheckResultLineTitle/>
                 <RunDemoCheckResultLineBody file_list={this.props.file_list}
-                                            is_file_list_change={this.props.is_file_list_change}/>
+                                            is_file_list_change={this.props.is_file_list_change}
+                                            handleSetRunDemoConvertFileInFileListToRixFileList={this.props.handleSetRunDemoConvertFileInFileListToRixFileList}
+                />
             </div>
         )
     }
