@@ -30,7 +30,7 @@ class RunDemo extends Component {
                 <CheckResult mode={this.props.mode}
                              file_list={this.props.file_list}
                              is_file_list_change={this.props.is_file_list_change}
-                             handleSetRunDemoConvertFileInFileListToRixFileList={this.props.handleSetRunDemoConvertFileInFileListToRixFileList}
+                             handleSetRunDemoConvertFileInFileListToFixFileList={this.props.handleSetRunDemoConvertFileInFileListToFixFileList}
                 />
 
                 <FixData mode={this.props.mode}/>
@@ -60,7 +60,7 @@ const mapDispatchToProps = (dispatch) => {
         handleSetRunDemoMode: (mode) => {
             dispatch(actions.setRunDemoMode(mode))
         },
-        handleSetRunDemoConvertFileInFileListToRixFileList: (fix_file) => {
+        handleSetRunDemoConvertFileInFileListToFixFileList: (fix_file) => {
             dispatch(actions.setRunDemoConvertFileInFileListToFixFileList(fix_file))
         }
     };

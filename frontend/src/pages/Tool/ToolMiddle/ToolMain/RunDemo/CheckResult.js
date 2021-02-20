@@ -11,7 +11,7 @@ class CheckResult extends Component {
                 <RunDemoCheckResultLineTitle/>
                 <RunDemoCheckResultLineBody file_list={this.props.file_list}
                                             is_file_list_change={this.props.is_file_list_change}
-                                            handleSetRunDemoConvertFileInFileListToRixFileList={this.props.handleSetRunDemoConvertFileInFileListToRixFileList}
+                                            handleSetRunDemoConvertFileInFileListToFixFileList={this.props.handleSetRunDemoConvertFileInFileListToFixFileList}
                 />
             </div>
         )

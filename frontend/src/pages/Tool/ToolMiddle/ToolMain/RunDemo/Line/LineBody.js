@@ -23,7 +23,7 @@ export class RunDemoCheckResultLineBody extends Component {
             return <RunDemoCheckResultLineBodyOneLine key={uuidv4()}
                                                       file_and_blob={file_and_blob}
                                                       access_token={access_token}
-                                                      handleSetRunDemoConvertFileInFileListToRixFileList={this.props.handleSetRunDemoConvertFileInFileListToRixFileList}
+                                                      handleSetRunDemoConvertFileInFileListToFixFileList={this.props.handleSetRunDemoConvertFileInFileListToFixFileList}
             />;
         })
 
@@ -52,7 +52,7 @@ class RunDemoCheckResultLineBodyOneLine extends Component {
     }
 
     setOneLineRemove() {
-        this.props.handleSetRunDemoConvertFileInFileListToRixFileList(this.props.file_and_blob)
+        this.props.handleSetRunDemoConvertFileInFileListToFixFileList(this.props.file_and_blob)
         this.setState({is_remove_component: true})
     }
 
