@@ -1,0 +1,67 @@
+:root {
+    --Tool_global_header_and_sidebar_bg_color: #434a5e;
+
+    --Tool_header_min_width: 1200px;
+    --Tool_header_width: 100%;
+    --Tool_header_height: 75px;
+
+
+    --Tool-header-profile-image_margin_right: 40px;
+
+    --Tool-header-profile-text_flex_margin_right: 20px;
+
+    --Tool-header-profile-text_flex-text_color: #FFFFFF;
+    --Tool-header-profile-text_flex-text_font_size: 40px;
+}
+
+
+.Tool-header {
+    display: flex;
+    justify-content: space-between;
+
+    background-color: var(--Tool_global_header_and_sidebar_bg_color);
+
+
+    width: var(--Tool_header_width);
+    height: var(--Tool_header_height);
+    min-width: var(--Tool_header_min_width);
+}
+
+
+.Tool-header-sidebar_button {
+    margin-left: 30px;
+    background: #282c34;
+    border: none;
+}
+
+
+.Tool-header-sidebar_button:hover {
+    background-color: #282c34;
+}
+
+.Tool-header-sidebar_button:focus {
+    outline: 0;
+}
+
+
+.Tool-header-profile {
+    display: flex;
+}
+
+.Tool-header-profile-image {
+    width: var(--Tool_header_height);
+    height: var(--Tool_header_height);
+    margin-right: var(--Tool-header-profile-image_margin_right);
+}
+
+.Tool-header-profile-text_flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: var(--Tool-header-profile-text_flex_margin_right);
+}
+
+.Tool-header-profile-text_flex-text {
+    color: var(--Tool-header-profile-text_flex-text_color);
+    font-size: var(--Tool-header-profile-text_flex-text_font_size);
+}

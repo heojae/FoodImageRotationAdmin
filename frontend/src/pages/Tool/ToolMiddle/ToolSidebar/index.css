@@ -1,0 +1,55 @@
+:root {
+    --Tool_global_header_and_sidebar_bg_color: #434a5e;
+
+    --Tool-sidebar_width: 200px;
+    --Tool-sidebar_height: auto;
+    --Tool-sidebar_min-height: 100vh;
+
+    --Tool-sidebar-item_height: 75px;
+    --Tool-sidebar-item_color: #FFFFFF;
+    --Tool-sidebar-item_text_font_size: 20px;
+
+}
+
+
+.Tool-sidebar {
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--Tool_global_header_and_sidebar_bg_color);
+
+    width: var(--Tool-sidebar_width);
+    height: var(--Tool-sidebar_height);
+    min-height: var(--Tool-sidebar_min-height);
+
+}
+
+.Tool-sidebar-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--Tool_global_header_and_sidebar_bg_color);
+
+    width: var(--Tool-sidebar_width);
+    height: var(--Tool-sidebar-item_height);
+
+    border: none;
+
+    color: var(--Tool-sidebar-item_color);
+    font-size: var(--Tool-sidebar-item_text_font_size);
+
+}
+
+.Tool-sidebar-item:hover {
+    background-color: #434a5e;
+    /*background-color: #ffffff;*/
+}
+
+.Tool-sidebar-item:focus {
+    outline: 0;
+}
+
+.Tool-sidebar-item-text {
+
+}
