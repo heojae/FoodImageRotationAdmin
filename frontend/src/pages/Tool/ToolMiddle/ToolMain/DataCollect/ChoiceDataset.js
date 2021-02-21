@@ -83,7 +83,7 @@ class ChoiceDatasetLoadButton extends Component {
             <div className={"Tool-main-data_collect-choice_dataset-load_button"}>
                 <Button
                     type={"submit"}
-                    style={{width: "200px"}}
+                    style={{width: "300px"}}
                     className="Tool-main-run_demo-choice_mode-item"
                     onClick={this.props.getImageInfoListOfChooseDataset}
                 >

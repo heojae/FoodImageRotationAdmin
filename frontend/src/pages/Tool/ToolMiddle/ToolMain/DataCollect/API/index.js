@@ -29,10 +29,19 @@ export async function getChooseImageInfoList(dataset_pk = 0, metadata = {"access
         const image_info_list = []
         stream.on("data", function (response) {
             let [pk, dataset_info_pk, original_file_name, uuid_file_name, exif_degree, model_degree, confidence, user_fix_degree] = response.array
-            image_info_list.push({pk, dataset_info_pk, original_file_name, uuid_file_name, exif_degree, model_degree, confidence, user_fix_degree})
+            image_info_list.push({
+                pk,
+                dataset_info_pk,
+                original_file_name,
+                uuid_file_name,
+                exif_degree,
+                model_degree,
+                confidence,
+                user_fix_degree
+            })
         })
         stream.on("end", function (end) {
-            handleSetDataCollectImageInfoList(image_info_list)
+            handleSetDataCollectImageInfoList(dataset_pk, image_info_list)
         });
 
     } catch (err) {

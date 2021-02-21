@@ -1,4 +1,3 @@
-// TODO : 자 이제 구현을 시작하지, 시발
 import React, {Component} from "react";
 import ToolMainTitle from "../ToolMainTitle";
 import {connect} from "react-redux";
@@ -6,6 +5,7 @@ import ChoiceDataset from "./ChoiceDataset";
 
 import "./index.css";
 import * as actions from "../../../../../actions";
+import ImageInfoOutput from "./ImageInfoOutput";
 
 
 class DataCollect extends Component {
@@ -22,6 +22,8 @@ class DataCollect extends Component {
 
                 <ChoiceDataset handleSetDataCollectImageInfoList={this.props.handleSetDataCollectImageInfoList}/>
 
+                <ImageInfoOutput/>
+
 
             </div>
         )
@@ -37,8 +39,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleSetDataCollectImageInfoList: (image_info_list) => {
-            dispatch(actions.setDataCollectImageInfoList(image_info_list))
+        handleSetDataCollectImageInfoList: (dataset_info_pk, image_info_list) => {
+            dispatch(actions.setDataCollectImageInfoList(dataset_info_pk, image_info_list))
         }
     };
 }

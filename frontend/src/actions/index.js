@@ -57,9 +57,10 @@ export function setRunDemoRemoveFixFile(uuid_key) {
 }
 
 // ------------------------------------------ data collect -------------------------------------------
-export function setDataCollectImageInfoList(image_info_list) {
+export function setDataCollectImageInfoList(dataset_info_pk, image_info_list) {
     return {
         type: types.SET_DATA_COLLECT_IMAGE_INFO_LIST,
+        dataset_info_pk,
         image_info_list
     }
 }
