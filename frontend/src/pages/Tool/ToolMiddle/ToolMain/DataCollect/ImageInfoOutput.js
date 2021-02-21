@@ -7,7 +7,8 @@ class ImageInfoOutput extends Component {
         return (
             <div className={"Tool-main-data_collect-output"}>
                 <DataCollectOutputLineTitle/>
-                <RunDemoCheckResultLineBody/>
+                <RunDemoCheckResultLineBody dataset_info_pk={this.props.dataset_info_pk}
+                                            image_info_list={this.props.image_info_list}/>
             </div>
         )
     }

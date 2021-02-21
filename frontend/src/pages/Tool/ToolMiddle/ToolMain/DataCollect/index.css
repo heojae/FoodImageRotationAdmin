@@ -22,6 +22,7 @@
     text-align: center;
 
     height: auto;
+    margin-top: 50px;
 }
 
 
@@ -33,7 +34,7 @@
     height: 50px;
     margin-top: 20px;
 
-    border: black 1px solid;
+    /*border: black 1px solid;*/
 }
 
 .Tool-main-data_collect-output-line-title-item {
@@ -63,6 +64,7 @@
 
     width: 1200px;
     height: 240px;
+    margin-top: 15px;
 }
 
 .Tool-main-data_collect-output-line-body-item {
@@ -73,7 +75,7 @@
     width: 240px;
     height: 240px;
 
-    border: 1px solid #282c34;
+    /*border: 1px solid #282c34;*/
 }
 
 .Tool-main-data_collect-output-line-body-item-text {
@@ -84,5 +86,7 @@
 .Tool-main-data_collect-output-line-body-item-image {
     width: 100%;
     height: 100%;
+    /*width: 240px;*/
+    /*height: 240px;*/
     object-fit: contain;
 }

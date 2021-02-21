@@ -8,6 +8,7 @@ window.env = {
   "npm_config_browser": "",
   "npm_package_dependencies_redux": "^4.0.5",
   "npm_config_also": "",
+  "npm_package_dependencies_sf": "^0.2.0",
   "npm_config_sign_git_commit": "",
   "npm_config_rollback": "true",
   "NODE": "/usr/local/Cellar/node/14.4.0/bin/node",

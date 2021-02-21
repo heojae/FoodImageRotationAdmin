@@ -28,14 +28,8 @@ class ChoiceDataset extends Component {
     }
 
     handleSetDatasetInfoList(dataset_info_list) {
+        this.props.handleSetDataCollectDatasetInfoList(dataset_info_list);
         this.setState({dataset_info_list: dataset_info_list});
-    }
-
-    async componentDidMount() {
-        const cookies = new Cookies();
-        const access_token = cookies.get("access_token");
-        const metadata = {"access_token": access_token};
-        await getDatasetInfoList(metadata, this.handleSetDatasetInfoList);
     }
 
 
@@ -50,13 +44,20 @@ class ChoiceDataset extends Component {
         }
     }
 
+    async componentDidMount() {
+        const cookies = new Cookies();
+        const access_token = cookies.get("access_token");
+        const metadata = {"access_token": access_token};
+        await getDatasetInfoList(metadata, this.handleSetDatasetInfoList);
+    }
+
 
     render() {
         const dataset_info_list = this.state.dataset_info_list;
         const option_list = dataset_info_list.map((dataset_info, index) => {
-            return <Option key={index} value={dataset_info[0]}
+            return <Option key={index} value={dataset_info.pk}
                            style={{width: "500px", height: "50px", textAlign: "center", fontSize: "20px"}}>
-                {dataset_info[1]}
+                {dataset_info.title}
             </Option>
         })
 
