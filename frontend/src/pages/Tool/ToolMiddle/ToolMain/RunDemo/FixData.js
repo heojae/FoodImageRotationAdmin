@@ -12,6 +12,7 @@ class FixData extends Component {
                 <RunDemoFixDataLineBody
                     fix_file_list={this.props.fix_file_list}
                     is_fix_file_list_change={this.props.is_fix_file_list_change}
+                    handleSetRunDemoRemoveFixFile={this.props.handleSetRunDemoRemoveFixFile}
                 />
             </div>
         )

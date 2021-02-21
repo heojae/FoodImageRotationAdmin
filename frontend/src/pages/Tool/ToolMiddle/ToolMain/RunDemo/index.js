@@ -36,6 +36,7 @@ class RunDemo extends Component {
                 <FixData mode={this.props.mode}
                          fix_file_list={this.props.fix_file_list}
                          is_fix_file_list_change={this.props.is_fix_file_list_change}
+                         handleSetRunDemoRemoveFixFile={this.props.handleSetRunDemoRemoveFixFile}
                 />
 
             </div>
@@ -65,6 +66,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         handleSetRunDemoConvertFileInFileListToFixFileList: (fix_file) => {
             dispatch(actions.setRunDemoConvertFileInFileListToFixFileList(fix_file))
+        },
+        handleSetRunDemoRemoveFixFile: (fix_file) => {
+            dispatch(actions.setRunDemoRemoveFixFile(fix_file))
         }
     };
 }

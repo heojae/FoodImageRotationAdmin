@@ -4,7 +4,7 @@ import Cookies from "universal-cookie";
 
 import {ArrowRightOutlined} from "@ant-design/icons"
 import {Button} from "antd";
-import {inference} from "../API";
+import {inference, saveUserFixImage} from "../API";
 import CheckOutlined from "@ant-design/icons/lib/icons/CheckOutlined";
 
 export class RunDemoCheckResultLineBody extends Component {
@@ -111,10 +111,10 @@ class RunDemoCheckResultLineBodyOneLine extends Component {
             this.state.is_remove_component ? null :
                 <div className={"Tool-main-run_demo-output-line-body-one_line"}>
                     <RunDemoLineBodyItemText text_list={file_name}/>
-                    <RunDemoLineBodyItemImage url={this.state.url} model_degree={0} user_rotate_degree={0}/>
+                    <RunDemoLineBodyItemImage url={this.state.url} model_degree={0} user_fix_degree={0}/>
                     <RunDemoLineBodyItemImage url={this.state.url}
                                               model_degree={this.state.model_degree}
-                                              user_rotate_degree={0}
+                                              user_fix_degree={0}
                     />
                     <RunDemoLineBodyItemText text_list={output_info}/>
                     <RunDemoLineBodyItemText text_list={confidence_info}/>
@@ -142,6 +142,7 @@ export class RunDemoFixDataLineBody extends Component {
                                                   uuid_key={uuid_key}
                                                   fix_file_info={fix_file_info}
                                                   access_token={access_token}
+                                                  handleSetRunDemoRemoveFixFile={this.props.handleSetRunDemoRemoveFixFile}
             />;
         })
 
@@ -164,7 +165,7 @@ class RunDemoFixDataLineBodyOneLine extends Component {
             model_degree: 0,
             confidence: 0,
 
-            user_rotate_degree: 0,
+            user_fix_degree: 0,
 
             is_remove_component: false
         };
@@ -174,20 +175,35 @@ class RunDemoFixDataLineBodyOneLine extends Component {
     }
 
     setUserRotateDegree(degree) {
-        this.setState({user_rotate_degree: degree})
+        this.setState({user_fix_degree: degree})
     }
 
-    setOneLineRemove() {
+    async setOneLineRemove() {
+        const blob = this.state.blob;
+        const arrayBuffer = await blob.arrayBuffer();
+        const uint8ArrayImage = new Uint8Array(arrayBuffer);
+        const metadata = {"access_token": this.props.access_token};
+        const file_name = this.state.file_name;
+        const exif_degree = this.state.exif_degree;
+        const model_degree = this.state.model_degree;
+        const confidence = this.state.confidence;
+        const user_fix_degree = this.state.user_fix_degree;
+
+        await saveUserFixImage(uint8ArrayImage, file_name, exif_degree, model_degree, confidence, user_fix_degree, metadata)
+
+        this.props.handleSetRunDemoRemoveFixFile(this.props.uuid_key)
         this.setState({is_remove_component: true});
     }
 
     componentDidMount() {
+        const blob = this.props.fix_file_info.blob;
         const file_name = this.props.fix_file_info.file_name;
         const url = this.props.fix_file_info.url;
         const exif_degree = this.props.fix_file_info.exif_degree;
         const model_degree = this.props.fix_file_info.model_degree;
         const confidence = this.props.fix_file_info.confidence;
         this.setState({
+            blob: blob,
             file_name: file_name,
             url: url,
             exif_degree: exif_degree,
@@ -202,7 +218,7 @@ class RunDemoFixDataLineBodyOneLine extends Component {
             "Exif Degree : " + this.state.exif_degree,
             "Model Degree : " + this.state.model_degree,
             "confidence : " + String(this.state.confidence).substr(0, 4),
-            "User Degree : " + this.state.user_rotate_degree
+            "User Degree : " + this.state.user_fix_degree
         ]
 
         return (
@@ -211,15 +227,15 @@ class RunDemoFixDataLineBodyOneLine extends Component {
                     <RunDemoLineBodyItemText text_list={file_name}/>
                     <RunDemoLineBodyItemImage url={this.state.url}
                                               model_degree={0}
-                                              user_rotate_degree={0}
+                                              user_fix_degree={0}
                     />
                     <RunDemoLineBodyItemImage url={this.state.url}
                                               model_degree={this.state.model_degree}
-                                              user_rotate_degree={this.state.user_rotate_degree}
+                                              user_fix_degree={this.state.user_fix_degree}
                     />
                     <RunDemoLineBodyItemText text_list={output_info}/>
                     <RunDemoLineBodyItemRotateButton setUserRotateDegree={this.setUserRotateDegree}/>
-                    <RunDemoLineBodyItemSaveButton/>
+                    <RunDemoLineBodyItemSaveButton setOneLineRemove={this.setOneLineRemove}/>
                 </div>
         )
     }
@@ -246,7 +262,7 @@ class RunDemoLineBodyItemText extends Component {
 
 class RunDemoLineBodyItemImage extends Component {
     render() {
-        const rotate_degree = (-1 * this.props.model_degree) + (-1 * this.props.user_rotate_degree);
+        const rotate_degree = (-1 * this.props.model_degree) + (-1 * this.props.user_fix_degree);
 
         return (
             <div className={"Tool-main-run_demo-output-line-body-item"}>
@@ -325,8 +341,10 @@ class RunDemoLineBodyItemSaveButton extends React.Component {
         return (
             <div className={"Tool-main-run_demo-output-line-body-item"}>
                 <Button style={{width: "100px", height: "100px"}}
-                        className="Tool-main-run_demo-output-line-body-item-save_button">
-                    <CheckOutlined style={{fontSize: "40px"}} />
+                        className="Tool-main-run_demo-output-line-body-item-save_button"
+                        onClick={this.props.setOneLineRemove}
+                >
+                    <CheckOutlined style={{fontSize: "40px"}}/>
                 </Button>
             </div>
         );
