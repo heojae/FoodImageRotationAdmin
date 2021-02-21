@@ -137,9 +137,8 @@ export class RunDemoFixDataLineBody extends Component {
         const access_token = cookies.get("access_token");
 
         const one_line_component_list = this.props.fix_file_list.map((fix_file_info, index) => {
-            const uuid_key = uuidv4();
-            return <RunDemoFixDataLineBodyOneLine key={uuid_key}
-                                                  uuid_key={uuid_key}
+            return <RunDemoFixDataLineBodyOneLine key={fix_file_info.uuid_key}
+                                                  uuid_key={fix_file_info.uuid_key}
                                                   fix_file_info={fix_file_info}
                                                   access_token={access_token}
                                                   handleSetRunDemoRemoveFixFile={this.props.handleSetRunDemoRemoveFixFile}
