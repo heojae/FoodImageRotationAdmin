@@ -1,0 +1,12 @@
+.Tool-main-data_collect-choice_dataset{
+    display: flex;
+
+    width: 900px;
+
+    margin-top: 30px;
+}
+
+.Tool-main-data_collect-choice_dataset-load_button{
+    margin-left: 100px;
+}
+
