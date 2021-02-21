@@ -1,0 +1,136 @@
+/* ------------  DropZone  -----------------*/
+.Tool-main-run_demo-dropzone-flex {
+    display: flex;
+    justify-content: center;
+}
+
+.Tool-main-run_demo-dropzone {
+    margin-top: 50px;
+}
+
+.Tool-main-run_demo-dropzone-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    width: 800px;
+    height: 200px;
+    border: 4px dashed #4aa1f3;
+}
+
+.Tool-main-run_demo-dropzone-container-message {
+    text-align: center;
+    color: #4aa1f3;
+    font-size: 20px;
+}
+
+.Tool-main-run_demo-dropzone-container-file_input {
+    display: none;
+}
+
+
+/*-------------  Choice Mode  ------------------*/
+
+
+.Tool-main-run_demo-choice_mode-container {
+    display: flex;
+    justify-content: center;
+
+    width: 1200px;
+    height: 75px;
+
+    margin-top: 50px;
+}
+
+.Tool-main-run_demo-choice_mode {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: 100%;
+
+}
+
+/*-------------  CheckResult and FixData  ------------------*/
+
+.Tool-main-run_demo-output {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    height: auto;
+
+}
+
+.Tool-main-run_demo-output-line-title {
+    display: flex;
+    flex-direction: row;
+
+    width: 1200px;
+    height: 50px;
+    margin-top: 20px;
+
+    border: black 1px solid;
+}
+
+.Tool-main-run_demo-output-line-title-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 200px;
+    height: 50px;
+
+    font-size: 16px;
+}
+
+
+/*-------------  CheckResult Output ------------------*/
+.Tool-main-run_demo-output-line-body {
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    height: auto;
+}
+
+.Tool-main-run_demo-output-line-body-one_line {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 1200px;
+    height: 200px;
+}
+
+.Tool-main-run_demo-output-line-body-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 200px;
+    height: 200px;
+
+    /*border: 1px solid #282c34;*/
+}
+
+.Tool-main-run_demo-output-line-body-item-text {
+    font-size: 20px;
+}
+
+
+.Tool-main-run_demo-output-line-body-item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.Tool-main-run_demo-output-line-body-item-rotate{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+
+

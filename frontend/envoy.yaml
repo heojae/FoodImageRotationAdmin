@@ -30,7 +30,7 @@ static_resources:
                             cluster: model_version_server
                             max_grpc_timeout: 0s
 
-                        - match: { prefix: "/Inference/" }
+                        - match: { prefix: "/InferenceImage/" }
                           route:
                             cluster: dl_server
                             max_grpc_timeout: 0s

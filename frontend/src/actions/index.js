@@ -42,11 +42,17 @@ export function setRunDemoFileList(file_list) {
     }
 }
 
-export function setRunDemoConvertFileInFileListToRixFileList(fix_file) {
+export function setRunDemoConvertFileInFileListToFixFileList(fix_file) {
     return {
         type: types.SET_RUN_DEMO_CONVERT_FILE_IN_FILE_LIST_TO_FIX_FILE_LIST,
         fix_file
     }
 }
 
+export function setRunDemoRemoveFixFile(uuid_key) {
+    return {
+        type: types.SET_RUN_DEMO_REMOVE_FIX_FILE,
+        uuid_key
+    }
+}
 
