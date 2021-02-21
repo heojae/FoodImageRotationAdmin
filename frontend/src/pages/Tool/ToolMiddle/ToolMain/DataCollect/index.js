@@ -6,6 +6,7 @@ import ChoiceDataset from "./ChoiceDataset";
 import "./index.css";
 import * as actions from "../../../../../actions";
 import ImageInfoOutput from "./ImageInfoOutput";
+import SaveDataset from "./SaveDataset";
 
 
 class DataCollect extends Component {
@@ -28,6 +29,10 @@ class DataCollect extends Component {
                 <ImageInfoOutput dataset_info_pk={this.props.dataset_info_pk}
                                  image_info_list={this.props.image_info_list}/>
 
+                <SaveDataset dataset_info_pk={this.props.dataset_info_pk}
+                             dataset_info_list={this.props.dataset_info_list}
+
+                />
 
             </div>
         )
@@ -39,6 +44,7 @@ const mapStateToProps = (state) => {
     return {
         tool_mode: state.tool.mode,
         dataset_info_pk: state.data_collect.dataset_info_pk,
+        dataset_info_list: state.data_collect.dataset_info_list,
         image_info_list: state.data_collect.image_info_list
     }
 }

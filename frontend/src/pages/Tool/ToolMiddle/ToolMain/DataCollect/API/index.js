@@ -1,5 +1,5 @@
 import {Empty} from "../../../../../../proto/empty_pb";
-import {SelectedDatasetInfo, SelectedImageInfo} from "../../../../../../proto/dataset_pb"
+import {SelectedDatasetInfo, SelectedImageInfo, NewDatasetInfo} from "../../../../../../proto/dataset_pb"
 import {client_dataset} from "./client";
 
 
@@ -86,3 +86,18 @@ export async function removeImage(image_info_pk = 0, metadata = {"access_token":
         return false
     }
 }
+
+export async function createDatasetInfo(title, metadata = {"access_token": ""}) {
+    const req = new NewDatasetInfo();
+    req.setTitle(title);
+    try {
+        await client_dataset.createDatasetInfo(req, metadata);
+        return true;
+    } catch (err) {
+        return false;
+    }
+
+}
+
+
+
