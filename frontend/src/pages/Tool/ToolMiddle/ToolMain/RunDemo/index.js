@@ -33,7 +33,10 @@ class RunDemo extends Component {
                              handleSetRunDemoConvertFileInFileListToFixFileList={this.props.handleSetRunDemoConvertFileInFileListToFixFileList}
                 />
 
-                <FixData mode={this.props.mode}/>
+                <FixData mode={this.props.mode}
+                         fix_file_list={this.props.fix_file_list}
+                         is_fix_file_list_change={this.props.is_fix_file_list_change}
+                />
 
             </div>
         )

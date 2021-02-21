@@ -125,5 +125,12 @@
     object-fit: contain;
 }
 
+.Tool-main-run_demo-output-line-body-item-rotate{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-flow: column wrap;
+}
+
 
 

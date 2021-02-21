@@ -38,6 +38,20 @@ export default function run_demo(state = initialState, action) {
                 is_fix_file_list_change: true
             }
 
+        case types.SET_RUN_DEMO_REMOVE_FIX_FILE:
+            const fix_file_list = state.fix_file_list.filter((item) => {
+                return item.uuid_key !== action.uuid_key
+            })
+
+            return {
+                ...state,
+                fix_file_list: fix_file_list,
+                is_mode_change: false,
+                is_file_list_change: false,
+                is_fix_file_list_change: false
+            }
+
+
         default:
             return state
     }

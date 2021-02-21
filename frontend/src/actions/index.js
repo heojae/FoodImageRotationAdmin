@@ -49,4 +49,10 @@ export function setRunDemoConvertFileInFileListToFixFileList(fix_file) {
     }
 }
 
+export function setRunDemoRemoveFixFile(uuid_key) {
+    return {
+        type: types.SET_RUN_DEMO_REMOVE_FIX_FILE,
+        uuid_key
+    }
+}
 
