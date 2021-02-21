@@ -1,0 +1,92 @@
+/*-------------------------- Choice Dataset -------------------------*/
+.Tool-main-data_collect-choice_dataset {
+    display: flex;
+    justify-content: center;
+
+    width: 900px;
+
+    margin-top: 30px;
+    margin-left: 150px;
+}
+
+.Tool-main-data_collect-choice_dataset-load_button {
+    margin-left: 50px;
+}
+
+/*-------------------------- Choice Dataset -------------------------*/
+
+
+.Tool-main-data_collect-output {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    height: auto;
+    margin-top: 50px;
+}
+
+
+.Tool-main-data_collect-output-line-title {
+    display: flex;
+    flex-direction: row;
+
+    width: 1200px;
+    height: 50px;
+    margin-top: 20px;
+
+    /*border: black 1px solid;*/
+}
+
+.Tool-main-data_collect-output-line-title-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 240px;
+    height: 50px;
+
+    font-size: 16px;
+}
+
+/*-------------  CheckResult Output ------------------*/
+.Tool-main-data_collect-output-line-body {
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    height: auto;
+}
+
+.Tool-main-data_collect-output-line-body-one_line {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 1200px;
+    height: 240px;
+    margin-top: 15px;
+}
+
+.Tool-main-data_collect-output-line-body-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 240px;
+    height: 240px;
+
+    /*border: 1px solid #282c34;*/
+}
+
+.Tool-main-data_collect-output-line-body-item-text {
+    font-size: 20px;
+}
+
+
+.Tool-main-data_collect-output-line-body-item-image {
+    width: 100%;
+    height: 100%;
+    /*width: 240px;*/
+    /*height: 240px;*/
+    object-fit: contain;
+}

@@ -4,10 +4,9 @@ import user from "./user";
 import sidebar from "./sidebar";
 import tool from "./tool";
 import run_demo from "./run_demo";
-
-
+import data_collect from "./data_collect"
 const reducers = combineReducers({
-    user, sidebar, tool, run_demo
+    user, sidebar, tool, run_demo, data_collect
 });
 
 export default reducers;
