@@ -8,6 +8,10 @@ const {Option} = Select;
 
 
 class ChoiceDataset extends Component {
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return this.state.dataset_info_list.length !== nextState.dataset_info_list.length;
+    }
+
     constructor(props) {
         super(props);
         this.state = {
