@@ -82,7 +82,7 @@ export function setModelVersionUsing(model_version_using) {
 
 export function setModelVersionAll(model_version_all) {
     return {
-        type: types.SET_MODEL_VERSION_USING,
+        type: types.SET_MODEL_VERSION_ALL,
         model_version_all
     }
 }
