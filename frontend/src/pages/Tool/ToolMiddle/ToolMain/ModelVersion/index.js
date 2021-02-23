@@ -6,6 +6,8 @@ import {connect} from "react-redux";
 import * as actions from "../../../../../actions";
 import ModelVersionUsing from "./ModelVersionUsing";
 import ModelVersionAll from "./ModelVersionAll";
+import Cookies from "universal-cookie";
+import {getUsingModelVersion} from "./API";
 
 
 class ModelVersion extends Component {
@@ -15,7 +17,23 @@ class ModelVersion extends Component {
 
 
     async componentDidMount() {
-
+        const cookies = new Cookies();
+        const access_token = cookies.get("access_token");
+        const metadata = {"access_token": access_token};
+        const response = await getUsingModelVersion(metadata);
+        if (response) {
+            const [pk, version_name, train_acc, test_acc, model_file_name, is_using] = response;
+            this.props.handleSetModelVersionUsing(
+                {
+                    "pk": pk,
+                    "version_name": version_name,
+                    "train_acc": train_acc,
+                    "test_acc": test_acc,
+                    "model_file_name": model_file_name,
+                    "is_using": is_using
+                }
+            )
+        }
     }
 
     render() {
@@ -25,7 +43,7 @@ class ModelVersion extends Component {
                 <ToolMainTitle title={"Model Version of Food Image Rotation Detector(API)"}
                                docs={"Model Version 에 대한 목록"}/>
 
-                <ModelVersionUsing/>
+                <ModelVersionUsing model_version_using={this.props.model_version_using}/>
                 {/*<ModelVersionAll/>*/}
             </div>
         )
@@ -36,8 +54,8 @@ class ModelVersion extends Component {
 const mapStateToProps = (state) => {
     return {
         tool_mode: state.tool.mode,
-        model_version_using: state.data_collect.model_version_using,
-        model_version_all: state.data_collect.model_version_all
+        model_version_using: state.model_version.model_version_using,
+        model_version_all: state.model_version.model_version_all
     }
 }
 const mapDispatchToProps = (dispatch) => {

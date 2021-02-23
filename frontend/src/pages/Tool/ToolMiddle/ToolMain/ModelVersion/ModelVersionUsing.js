@@ -3,6 +3,10 @@ import {ModelVersionUsingTitle} from "./Line/LineTitle";
 import {ModelVersionUsingLineBody} from "./Line/LineBody";
 
 class ModelVersionUsing extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div className={"Tool-main-model_version-using"}>
@@ -11,7 +15,7 @@ class ModelVersionUsing extends Component {
                     현재 사용중인 모델
                 </div>
                 <ModelVersionUsingTitle/>
-                <ModelVersionUsingLineBody/>
+                <ModelVersionUsingLineBody model_version_using={this.props.model_version_using}/>
             </div>
         )
     }
