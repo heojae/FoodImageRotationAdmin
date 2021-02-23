@@ -1,0 +1,88 @@
+:root {
+    --Login-main_bg_color: #FFFFFF;
+    --Login-main_width: 800px;
+    --Login-main_height: 600px;
+
+
+    --Login-main-title_margin_left: 50px;
+    --Login-main-title_margin_top: 50px;
+    --Login-main-title_margin_bottom: 60px;
+    --Login-main-title_font_size: 40px;
+
+
+    --Login-main-form_margin_left: 50px;
+    --Login-main-form_margin_right: 50px;
+
+
+    --Login-main-form_input_margin_top: 30px;
+
+
+    --Login-main-form-input-title_margin_bottom: 10px;
+    --Login-main-form-input-title_font_size: 20px;
+
+
+    --Login-main-form-input-text_field_width: 700px;
+    --Login-main-form-input-text_field_height: 50px;
+    --Login-main-form-input-text_field_font_size: 24px;
+
+
+    --Login-main-form-submit_margin_top: 100px;
+
+
+    --Login-main-form-submit-button_width: 200px;
+    --Login-main-form-submit-button_height: 50px;
+    --Login-main-form-submit-button_font_size: 24px;
+}
+
+.Login-main{
+    background-color: var(--Login-main_bg_color);
+
+    width: var(--Login-main_width);
+    height: var(--Login-main_height);
+
+}
+
+.Login-main-title {
+    margin-left: var(--Login-main-title_margin_left);
+    margin-top: var(--Login-main-title_margin_top);
+    margin-bottom: var(--Login-main-title_margin_bottom);
+    font-size: var(--Login-main-title_font_size);
+}
+
+
+.Login-main-form {
+    margin-left: var(--Login-main-form_margin_left);
+    margin-right: var(--Login-main-form_margin_right);
+
+}
+
+
+.Login-main-form-input {
+    margin-top: var(--Login-main-form_input_margin_top);
+}
+
+.Login-main-form-input-title {
+    margin-bottom: var(--Login-main-form-input-title_margin_bottom);
+    font-size: var(--Login-main-form-input-title_font_size);
+}
+
+.Login-main-form-input-text_field{
+    width: var(--Login-main-form-input-text_field_width);
+    height: var(--Login-main-form-input-text_field_height);
+    font-size: var(--Login-main-form-input-text_field_font_size);
+}
+
+.Login-main-form-submit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: var(--Login-main-form-submit_margin_top);
+}
+
+.Login-main-form-submit-button {
+    width: var(--Login-main-form-submit-button_width);
+    height: var(--Login-main-form-submit-button_height);
+
+    font-size: var(--Login-main-form-submit-button_font_size);
+}

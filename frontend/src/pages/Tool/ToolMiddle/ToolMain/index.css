@@ -1,0 +1,30 @@
+:root {
+
+    --Tool-main-title_margin_top: 30px;
+    --Tool-main-title_font_size: 40px;
+
+    --Tool-main-title-docs_margin_top: 10px;
+    --Tool-main-title-docs_font_size: 16px;
+
+}
+
+.Tool-main {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    flex-direction: column;
+
+    min-width: 1200px;
+
+}
+
+.Tool-main-title {
+    text-align: center;
+    margin-top: var(--Tool-main-title_margin_top);
+    font-size: var(--Tool-main-title_font_size);
+}
+
+.Tool-main-title-docs {
+    margin-top: var(--Tool-main-title-docs_margin_top);
+    font-size: var(--Tool-main-title-docs_font_size);
+}

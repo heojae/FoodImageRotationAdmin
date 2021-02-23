@@ -1,0 +1,8 @@
+.Tool-middle {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    min-width: 1400px;
+    min-height: calc(100vh + 75px);
+}

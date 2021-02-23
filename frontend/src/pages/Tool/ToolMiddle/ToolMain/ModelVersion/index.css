@@ -1,0 +1,71 @@
+
+/*------------------------------------ Output - Title ------------------------------------*/
+.Tool-main-model_version-all{
+    margin-top: 200px;
+}
+
+.Tool-main-model_version-output-header{
+    margin-top: 100px;
+    /*margin-left: 20px;*/
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+.Tool-main-model_version-output-title {
+    display: flex;
+    flex-direction: row;
+
+    width: 1200px;
+    height: 50px;
+    margin-top: 10px;
+
+    /*border: black 1px solid;*/
+}
+
+
+.Tool-main-model_version-output-line-title-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 240px;
+    height: 50px;
+
+    font-size: 25px;
+}
+
+/*------------------------------------ Output - Body ------------------------------------*/
+.Tool-main-model_version-output-line-body {
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    height: auto;
+}
+.Tool-main-model_version-output-line-body-one_line {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 1200px;
+    height: 60px;
+    margin-top: 15px;
+
+    /*border: 1px black solid;*/
+}
+
+
+.Tool-main-model_version-output-line-body-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 240px;
+    height: 60px;
+}
+
+.Tool-main-model_version-output-line-body-item-text {
+    font-size: 20px;
+}
+
