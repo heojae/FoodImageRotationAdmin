@@ -7,7 +7,7 @@ import * as actions from "../../../../../actions";
 import ModelVersionUsing from "./ModelVersionUsing";
 import ModelVersionAll from "./ModelVersionAll";
 import Cookies from "universal-cookie";
-import {getUsingModelVersion} from "./API";
+import {getAllModelVersion, getUsingModelVersion} from "./API";
 
 
 class ModelVersion extends Component {
@@ -34,6 +34,7 @@ class ModelVersion extends Component {
                 }
             )
         }
+        await getAllModelVersion(metadata, this.props.handleSetModelVersionAll);
     }
 
     render() {
@@ -44,7 +45,10 @@ class ModelVersion extends Component {
                                docs={"Model Version 에 대한 목록"}/>
 
                 <ModelVersionUsing model_version_using={this.props.model_version_using}/>
-                {/*<ModelVersionAll/>*/}
+                <ModelVersionAll model_version_all={this.props.model_version_all}
+                                 handleSetModelVersionUsing={this.props.handleSetModelVersionUsing}
+                                 handleSetModelVersionAll={this.props.handleSetModelVersionAll}
+                />
             </div>
         )
     }
