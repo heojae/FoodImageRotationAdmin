@@ -2,6 +2,8 @@ import React, {Component} from "react"
 import {withRouter} from 'react-router-dom';
 import Cookies from "universal-cookie";
 
+import {Button} from 'antd';
+
 import {login} from "./API"
 
 
@@ -45,13 +47,25 @@ class LoginMainForm extends Component {
 
 class LoginMainFormInput extends Component {
     render() {
+        let input_component = "";
+        if (this.props.name === "password") {
+            input_component = <input className="Login-main-form-input-text_field"
+                                     type={"password"}
+                                     placeholder={this.props.name}
+                                     name={this.props.name}/>
+        } else {
+            input_component = <input className="Login-main-form-input-text_field"
+                                     type={"text"}
+                                     placeholder={this.props.name}
+                                     name={this.props.name}/>
+        }
+
         return (
             <div className="Login-main-form-input">
                 <div className="Login-main-form-input-title">
                     {this.props.title}
                 </div>
-                <input className="Login-main-form-input-text_field" placeholder={this.props.name}
-                       name={this.props.name}/>
+                {input_component}
             </div>
         )
     }
@@ -62,7 +76,7 @@ class LoginMainFormSubmit extends React.Component {
     render() {
         return (
             <div className={"Login-main-form-submit"}>
-                <button className="Login-main-form-submit-button"> Login</button>
+                <Button htmlType={"submit"} style={{width: "200px", height: "50px", fontSize: "24px"}}> Login</Button>
             </div>
         )
     }
