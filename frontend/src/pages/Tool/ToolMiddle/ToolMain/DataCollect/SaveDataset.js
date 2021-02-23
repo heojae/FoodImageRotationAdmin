@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Form, Input, Button, Checkbox} from 'antd';
-import {createDatasetInfo} from "./API";
+import {createDatasetInfo, getDatasetInfoList} from "./API";
 import Cookies from "universal-cookie";
 
 
@@ -27,10 +27,12 @@ class SaveDataset extends Component {
         const access_token = cookies.get("access_token");
         const metadata = {"access_token": access_token};
         await createDatasetInfo(values.title, metadata);
+        await getDatasetInfoList(metadata, this.props.handleSetDataCollectDatasetInfoList);
+        this.props.handleSetDataCollectImageInfoList(0, [])
     }
 
     render() {
-        const is_remove_component = this.props.dataset_info_pk !== this.getLastDatasetPk(this.props.dataset_info_list)
+        const is_remove_component = this.props.choose_dataset_info_pk !== this.getLastDatasetPk(this.props.dataset_info_list)
 
         return (
             is_remove_component ? null :

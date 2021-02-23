@@ -64,10 +64,25 @@ export function setDataCollectDatasetInfoList(dataset_info_list) {
     }
 }
 
-export function setDataCollectImageInfoList(dataset_info_pk, image_info_list) {
+export function setDataCollectImageInfoList(choose_dataset_info_pk, image_info_list) {
     return {
         type: types.SET_DATA_COLLECT_IMAGE_INFO_LIST,
-        dataset_info_pk,
+        choose_dataset_info_pk,
         image_info_list
+    }
+}
+
+// ------------------------------------------ model version -------------------------------------------
+export function setModelVersionUsing(model_version_using) {
+    return {
+        type: types.SET_MODEL_VERSION_USING,
+        model_version_using
+    }
+}
+
+export function setModelVersionAll(model_version_all) {
+    return {
+        type: types.SET_MODEL_VERSION_USING,
+        model_version_all
     }
 }
