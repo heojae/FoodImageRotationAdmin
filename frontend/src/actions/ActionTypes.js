@@ -18,3 +18,9 @@ export const SET_RUN_DEMO_REMOVE_FIX_FILE = "SET_RUN_DEMO_REMOVE_FIX_FILE";
 // --------------- data collect ----------------
 export const SET_DATA_COLLECT_DATASET_INFO_LIST = "SET_DATA_COLLECT_DATASET_INFO_LIST";
 export const SET_DATA_COLLECT_IMAGE_INFO_LIST = "SET_DATA_COLLECT_IMAGE_INFO_LIST";
+
+
+// --------------- model version ----------------
+// TODO : 이부분부터 내일 생각 시작하기
+export const SET_MODEL_VERSION_USING = "SET_MODEL_VERSION_USING";
+export const SET_MODEL_VERSION_ALL = "SET_MODEL_VERSION_ALL";

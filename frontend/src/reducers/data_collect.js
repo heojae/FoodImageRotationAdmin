@@ -2,7 +2,7 @@ import * as types from "../actions/ActionTypes";
 
 
 const initialState = {
-    dataset_info_pk: 0,
+    choose_dataset_info_pk: 0,
     dataset_info_list: [],
     image_info_list: []
 };
@@ -17,7 +17,7 @@ export default function data_collect(state = initialState, action) {
         case types.SET_DATA_COLLECT_IMAGE_INFO_LIST:
             return {
                 ...state,
-                dataset_info_pk: action.dataset_info_pk,
+                choose_dataset_info_pk: action.choose_dataset_info_pk,
                 image_info_list: action.image_info_list
             }
         default:

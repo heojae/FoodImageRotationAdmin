@@ -9,51 +9,37 @@ const {Option} = Select;
 
 class ChoiceDataset extends Component {
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return this.state.dataset_info_list.length !== nextState.dataset_info_list.length;
+        return this.props.dataset_info_list.length !== nextProps.dataset_info_list.length;
     }
 
     constructor(props) {
         super(props);
         this.state = {
-            dataset_pk: 0,
-            dataset_info_list: []
+            choose_dataset_info_pk: 0,
         }
         this.setDataset = this.setDataset.bind(this);
-        this.handleSetDatasetInfoList = this.handleSetDatasetInfoList.bind(this);
         this.getImageInfoListOfChooseDataset = this.getImageInfoListOfChooseDataset.bind(this);
     }
 
     setDataset(value) {
-        this.setState({dataset_pk: value});
+        this.setState({choose_dataset_info_pk: value});
     }
-
-    handleSetDatasetInfoList(dataset_info_list) {
-        this.props.handleSetDataCollectDatasetInfoList(dataset_info_list);
-        this.setState({dataset_info_list: dataset_info_list});
-    }
-
 
     async getImageInfoListOfChooseDataset(event) {
         event.preventDefault();
-        const dataset_pk = this.state.dataset_pk;
-        if (dataset_pk !== 0) {
+        const choose_dataset_info_pk = this.state.choose_dataset_info_pk;
+        if (choose_dataset_info_pk !== 0) {
             const cookies = new Cookies();
             const access_token = cookies.get("access_token");
             const metadata = {"access_token": access_token};
-            await getChooseImageInfoList(dataset_pk, metadata, this.props.handleSetDataCollectImageInfoList)
+            await getChooseImageInfoList(choose_dataset_info_pk, metadata, this.props.handleSetDataCollectImageInfoList)
         }
     }
 
-    async componentDidMount() {
-        const cookies = new Cookies();
-        const access_token = cookies.get("access_token");
-        const metadata = {"access_token": access_token};
-        await getDatasetInfoList(metadata, this.handleSetDatasetInfoList);
-    }
 
 
     render() {
-        const dataset_info_list = this.state.dataset_info_list;
+        const dataset_info_list = this.props.dataset_info_list;
         const option_list = dataset_info_list.map((dataset_info, index) => {
             return <Option key={index} value={dataset_info.pk}
                            style={{width: "500px", height: "50px", textAlign: "center", fontSize: "20px"}}>

@@ -14,7 +14,7 @@ export class RunDemoCheckResultLineBody extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return this.props.dataset_info_pk !== nextProps.dataset_info_pk
+        return this.props.choose_dataset_info_pk !== nextProps.choose_dataset_info_pk
     }
 
     render() {
