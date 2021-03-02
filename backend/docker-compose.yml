@@ -10,17 +10,33 @@ services:
   mysql-user:
     build:
       dockerfile: Dockerfile
-      context: mysql-user
+      context: ./mysql-user
     restart: unless-stopped
     container_name: mysql-user
     ports:
       - "40051:3306"
     volumes:
-      - ./mysql-user/mysql_data:/var/lib/mysql-user
+      - ./mysql-user/mysql_data:/var/lib/mysql
       - ./mysql-user/sqls/:/docker-entrypoint-initdb.d/
     environment:
       MYSQL_ROOT_PASSWORD: fira_user_password
       MYSQL_DATABASE: fira_user
+
+  # mysql model_version server
+  mysql-model_version:
+    build:
+      dockerfile: Dockerfile
+      context: ./mysql-model_version
+    restart: unless-stopped
+    container_name: mysql-model_version
+    ports:
+      - "40053:3306"
+    volumes:
+      - ./mysql-model_version/mysql_data:/var/lib/mysql
+      - ./mysql-model_version/sqls/:/docker-entrypoint-initdb.d/
+    environment:
+      MYSQL_ROOT_PASSWORD: fira_model_version_password
+      MYSQL_DATABASE: fira_model_version
 
   # user server
   api-user:
