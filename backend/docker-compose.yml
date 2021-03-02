@@ -1,16 +1,38 @@
 version: "3"
 services:
+  # Redis
+  redis-server:
+    image: redis:3.2-alpine
+    ports:
+      - "6379:6379"
+
+  # mysql user server
   mysql-user:
     build:
       dockerfile: Dockerfile
-      context: ./user/mysql
+      context: mysql-user
     restart: unless-stopped
     container_name: mysql-user
     ports:
       - "40051:3306"
     volumes:
-      - ./user/mysql/mysql_data:/var/lib/mysql
-      - ./user/mysql/sqls/:/docker-entrypoint-initdb.d/
+      - ./mysql-user/mysql_data:/var/lib/mysql-user
+      - ./mysql-user/sqls/:/docker-entrypoint-initdb.d/
     environment:
       MYSQL_ROOT_PASSWORD: fira_user_password
       MYSQL_DATABASE: fira_user
+
+  # user server
+  api-user:
+    build:
+      context: ./user
+      dockerfile: Dockerfile
+    image: fira/api-user
+    ports:
+      - "50051:50051"
+    restart: on-failure
+    depends_on:
+      - mysql-user
+      - redis-server
+
+

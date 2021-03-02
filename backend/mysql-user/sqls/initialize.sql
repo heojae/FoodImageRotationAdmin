@@ -1,4 +1,7 @@
+-- ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'fira_user_password';
+
 DROP DATABASE IF EXISTS fira_user;
+
 
 CREATE DATABASE fira_user;
 USE fira_user;
@@ -15,3 +18,6 @@ CREATE TABLE users (
 
 INSERT INTO users(email, password, profile_image, access_token)
 VALUES('admin@naver.com', '1234', 'admin/profile.jpg', 'f9e4a020-6bfd-11eb-8572-0800200c9a66');
+
+
+
