@@ -13,10 +13,6 @@ export class RunDemoCheckResultLineBody extends Component {
         super(props);
     }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return this.props.choose_dataset_info_pk !== nextProps.choose_dataset_info_pk
-    }
-
     render() {
         const cookies = new Cookies();
         const access_token = cookies.get("access_token");
@@ -60,7 +56,8 @@ class DataCollectOutputLineBodyOneLine extends Component {
         const output_info = [
             "Exif Degree : " + this.props.image_info.exif_degree,
             "Model Degree : " + this.props.image_info.model_degree,
-            "confidence : " + String(this.props.image_info.confidence).substr(0, 5)
+            "confidence : " + String(this.props.image_info.confidence).substr(0, 5),
+            "User Degree : " + this.props.image_info.user_fix_degree,
         ]
 
 

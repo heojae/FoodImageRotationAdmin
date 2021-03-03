@@ -27,13 +27,15 @@ class RunDemo extends Component {
 
                 <ChoiceMode handleSetRunDemoMode={this.props.handleSetRunDemoMode}/>
 
-                <CheckResult mode={this.props.mode}
+                <CheckResult tool_mode={this.props.tool_mode}
+                             mode={this.props.mode}
                              file_list={this.props.file_list}
                              is_file_list_change={this.props.is_file_list_change}
                              handleSetRunDemoConvertFileInFileListToFixFileList={this.props.handleSetRunDemoConvertFileInFileListToFixFileList}
                 />
 
-                <FixData mode={this.props.mode}
+                <FixData tool_mode={this.props.tool_mode}
+                         mode={this.props.mode}
                          fix_file_list={this.props.fix_file_list}
                          is_fix_file_list_change={this.props.is_fix_file_list_change}
                          handleSetRunDemoRemoveFixFile={this.props.handleSetRunDemoRemoveFixFile}

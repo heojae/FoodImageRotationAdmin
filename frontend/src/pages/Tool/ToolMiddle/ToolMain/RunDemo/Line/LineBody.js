@@ -13,7 +13,13 @@ export class RunDemoCheckResultLineBody extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return nextProps.is_file_list_change;
+        if (nextProps.is_file_list_change) {
+            if (nextProps.tool_mode === "RunDemo") {
+                return this.props.tool_mode === nextProps.tool_mode;
+            }
+        }
+
+        return false;
     }
 
     render() {
@@ -128,8 +134,14 @@ class RunDemoCheckResultLineBodyOneLine extends Component {
 
 // ------------------------------------ RunDemoFixDataLineBody -----------------------------------------
 export class RunDemoFixDataLineBody extends Component {
+
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return nextProps.is_fix_file_list_change;
+        if (nextProps.is_fix_file_list_change) {
+            if (nextProps.tool_mode === "RunDemo") {
+                return this.props.tool_mode === nextProps.tool_mode;
+            }
+        }
+        return false;
     }
 
     render() {
