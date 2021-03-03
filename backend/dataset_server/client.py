@@ -15,7 +15,7 @@ from proto.empty_pb2 import Empty
 
 
 async def get_dataset_info_list() -> List[dataset_pb2.DatasetInfo]:
-    async with grpc.aio.insecure_channel(settings.dataset_api_listen_addr) as channel:
+    async with grpc.aio.insecure_channel(settings.dataset_api_listen_port) as channel:
         stub: dataset_pb2_grpc.DatasetStub = dataset_pb2_grpc.DatasetStub(channel)
         metadata = (('access_token', settings.access_token),)
 
@@ -26,7 +26,7 @@ async def get_dataset_info_list() -> List[dataset_pb2.DatasetInfo]:
 
 
 async def get_image_info_list() -> List[dataset_pb2.ImageInfo]:
-    async with grpc.aio.insecure_channel(settings.dataset_api_listen_addr) as channel:
+    async with grpc.aio.insecure_channel(settings.dataset_api_listen_port) as channel:
         stub: dataset_pb2_grpc.DatasetStub = dataset_pb2_grpc.DatasetStub(channel)
         metadata = (('access_token', settings.access_token),)
 
@@ -37,7 +37,7 @@ async def get_image_info_list() -> List[dataset_pb2.ImageInfo]:
 
 
 async def get_choose_image_info_list(dataset_info_pk: int) -> List[dataset_pb2.ImageInfo]:
-    async with grpc.aio.insecure_channel(settings.dataset_api_listen_addr) as channel:
+    async with grpc.aio.insecure_channel(settings.dataset_api_listen_port) as channel:
         stub: dataset_pb2_grpc.DatasetStub = dataset_pb2_grpc.DatasetStub(channel)
         metadata = (('access_token', settings.access_token),)
 
@@ -49,7 +49,7 @@ async def get_choose_image_info_list(dataset_info_pk: int) -> List[dataset_pb2.I
 
 
 async def create_dataset_info(title: str) -> Empty:
-    async with grpc.aio.insecure_channel(settings.dataset_api_listen_addr) as channel:
+    async with grpc.aio.insecure_channel(settings.dataset_api_listen_port) as channel:
         stub: dataset_pb2_grpc.DatasetStub = dataset_pb2_grpc.DatasetStub(channel)
         metadata = (('access_token', settings.access_token),)
         response: Empty = await stub.CreateDatasetInfo(
@@ -59,7 +59,7 @@ async def create_dataset_info(title: str) -> Empty:
 
 
 async def remove_image(pk: int) -> Empty:
-    async with grpc.aio.insecure_channel(settings.dataset_api_listen_addr) as channel:
+    async with grpc.aio.insecure_channel(settings.dataset_api_listen_port) as channel:
         stub: dataset_pb2_grpc.DatasetStub = dataset_pb2_grpc.DatasetStub(channel)
         metadata = (('access_token', settings.access_token),)
         response: Empty = await stub.RemoveImage(
@@ -69,7 +69,7 @@ async def remove_image(pk: int) -> Empty:
 
 
 async def save_user_fix_image(image: PIL.Image.Image) -> Empty:
-    async with grpc.aio.insecure_channel(settings.dataset_api_listen_addr) as channel:
+    async with grpc.aio.insecure_channel(settings.dataset_api_listen_port) as channel:
         image_file: BytesIO = BytesIO()
         image.save(image_file, format="PNG")
         image_bytes: bytes = image_file.getvalue()
@@ -89,10 +89,17 @@ if __name__ == '__main__':
     logging.basicConfig()
 
     sample_get_dataset_info_list = asyncio.run(get_dataset_info_list())
+    image: PIL.Image.Image = Image.new('RGB', (224, 224), (127, 127, 127))
+    sample_save_user_fix_image = asyncio.run(save_user_fix_image(image=image))
     sample_get_image_info_list = asyncio.run(get_image_info_list())
     sample_get_choose_info_list = asyncio.run(get_choose_image_info_list(dataset_info_pk=1))
     sample_create_dataset_info = asyncio.run(create_dataset_info(title="sample_dataset2"))
-    # sample_remove_image = asyncio.run(remove_image(pk=2))
+    sample_remove_image = asyncio.run(remove_image(pk=1))
 
-    # image: PIL.Image.Image = Image.new('RGB', (224, 224), (127, 127, 127))
-    # sample_save_user_fix_image = asyncio.run(save_user_fix_image(image=image))
+    print("sample_get_dataset_info_list : ", sample_get_dataset_info_list)
+    print("sample_save_user_fix_image : ", sample_save_user_fix_image)
+    print("sample_get_image_info_list : ", sample_get_image_info_list)
+    print("sample_get_choose_info_list : ", sample_get_choose_info_list)
+    print("sample_create_dataset_info : ", sample_create_dataset_info)
+    print("sample_remove_image : ", sample_remove_image)
+

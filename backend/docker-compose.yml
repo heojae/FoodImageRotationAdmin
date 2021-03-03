@@ -38,6 +38,33 @@ services:
       MYSQL_ROOT_PASSWORD: fira_model_version_password
       MYSQL_DATABASE: fira_model_version
 
+  # mysql dataset server
+  mysql-dataset:
+    build:
+      dockerfile: Dockerfile
+      context: ./mysql-dataset
+    restart: unless-stopped
+    container_name: mysql-dataset
+    ports:
+      - "40054:3306"
+    volumes:
+      - ./mysql-dataset/mysql_data:/var/lib/mysql
+      - ./mysql-dataset/sqls/:/docker-entrypoint-initdb.d/
+    environment:
+      MYSQL_ROOT_PASSWORD: fira_dataset_password
+      MYSQL_DATABASE: fira_dataset
+
+  # dataset server nginx media
+  nginx-media:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./dataset_server/nginx
+    volumes:
+      - ./dataset_server/media:/app/media
+    ports:
+      - "50050:50050"
+
   # user server
   api-user:
     build:
@@ -63,6 +90,7 @@ services:
     depends_on:
       - mysql-model_version
       - api-user
+
   # dl server
   api-dl:
     build:
@@ -76,6 +104,37 @@ services:
     restart: always
     depends_on:
       - api-user
+      - api-model_version
+
+
+  # dataset server
+  api-dataset:
+    build:
+      context: ./dataset_server
+      dockerfile: Dockerfile
+    image: fira/api-dataset
+    volumes:
+      - ./dataset_server/media:/usr/src/app/media
+    ports:
+      - "50054:50054"
+    restart: always
+    depends_on:
+      - api-user
+      - mysql-dataset
+      - nginx-media
+
+  # envoy
+  envoy:
+    image: envoyproxy/envoy:v1.16.1
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml:ro
+    ports:
+      - "8080:8080"
+      - "9901:9901"
+    restart: always
+    depends_on:
+      - api-user
+      - api-dataset
       - api-model_version
 
 
