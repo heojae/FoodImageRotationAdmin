@@ -44,6 +44,4 @@ if __name__ == '__main__':
     logging.basicConfig()
     sample_get_using_model = asyncio.run(get_using_model())
     sample_get_model_version_list = asyncio.run(get_model_version_list())
-    print("sample_get_using_model : ", sample_get_using_model)
-    print("sample_get_model_version_list : ", sample_get_model_version_list)
-    # sample_change = asyncio.run(change(pk=6))
+    sample_change = asyncio.run(change(pk=2))

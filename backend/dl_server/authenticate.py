@@ -32,7 +32,7 @@ class AuthenticateUserAccessToken(grpc.ServerInterceptor):
 
 
 def authenticate(access_token: str) -> Tuple[Empty or None, str]:
-    with grpc.insecure_channel(settings.user_api_listen_port) as channel:
+    with grpc.insecure_channel(settings.user_api_listen_addr) as channel:
         stub: user_pb2_grpc.UserStub = user_pb2_grpc.UserStub(channel)
         metadata = (('access_token', access_token),)
         message = ""

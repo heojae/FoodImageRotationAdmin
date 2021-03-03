@@ -14,7 +14,7 @@ from proto import inference_pb2, inference_pb2_grpc
 from utils import check_exif_data_and_rotate_image, get_using_model_version_info, convert_bytes_image2pil_image
 
 # ---------------------------- Setup Model for Global  -------------------------------
-model: FiraEfficientNet or None
+model: FiraEfficientNet
 
 
 # ----------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ class InferenceImageServicer(inference_pb2_grpc.InferenceImageServicer):
     def Inference(self, request: inference_pb2.BytesImage,
                   context: grpc.aio.ServicerContext) -> inference_pb2.InferenceResult:
         global model
-        print("Inference")
+        print("Inference", flush=True)
 
         try:
             image: PIL.Image.Image = convert_bytes_image2pil_image(bytes_image_content=request.image_content)
@@ -44,7 +44,7 @@ class InferenceImageServicer(inference_pb2_grpc.InferenceImageServicer):
 
     def LoadModel(self, request: inference_pb2.ModelPath, context: grpc.aio.ServicerContext) -> Empty:
         global model
-        print("LoadModel")
+        print("LoadModel", flush=True)
 
         model_file_name = request.path
         try:

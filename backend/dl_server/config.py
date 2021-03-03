@@ -30,4 +30,34 @@ class Settings(BaseSettings):
     admin_profile_image: str = "admin/profile.jpg"
 
 
-settings = Settings()
+class DockerSettings(BaseSettings):
+    env: str = "prod"
+
+    user_api_listen_port: str = "[::]:50051"
+    dl_api_listen_port: str = "[::]:50052"
+    model_version_api_listen_port: str = "[::]:50053"
+    dataset_api_listen_port: str = "[::]:50054"
+    media_server_listen_port: str = "[::]:50050"
+
+    user_api_listen_addr: str = "api-user:50051"
+    dl_api_listen_addr: str = "api-dl:50052"
+    model_version_api_listen_addr: str = "api-model_version:50053"
+    dataset_api_listen_addr: str = "api-dataset:50054"
+    media_server_listen_addr: str = "nginx-media"
+
+    user_db_end_point: str = "mysql://root:fira_user_password@mysql-user/fira_user"
+    model_version_db_end_point: str = "mysql://root:fira_model_version_password@mysql-model_version/fira_model_version"
+    dataset_db_end_point: str = "mysql-user-dataset"
+    redis_end_point: str = "redis://redis-server:6379/0?encoding=utf-8"
+
+    token_header: str = "access_token"
+    access_token: str = "f9e4a020-6bfd-11eb-8572-0800200c9a66"
+
+    # api_user 에만 필요한 정보
+    admin_email: str = "admin@naver.com"
+    admin_password: str = "1234"
+    admin_profile_image: str = "admin/profile.jpg"
+
+
+# settings = Settings()
+settings = DockerSettings()

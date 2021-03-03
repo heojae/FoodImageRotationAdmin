@@ -12,7 +12,7 @@ from proto import inference_pb2, inference_pb2_grpc
 
 
 def inference(image: PIL.Image.Image) -> inference_pb2.InferenceResult or None:
-    with grpc.insecure_channel(settings.dl_api_listen_addr) as channel:
+    with grpc.insecure_channel(settings.dl_api_listen_port) as channel:
         image_file: BytesIO = BytesIO()
         image.save(image_file, format="PNG")
         image_bytes: bytes = image_file.getvalue()
@@ -27,7 +27,7 @@ def inference(image: PIL.Image.Image) -> inference_pb2.InferenceResult or None:
 
 
 def load_model(path: str) -> Empty or None:
-    with grpc.insecure_channel(settings.dl_api_listen_addr) as channel:
+    with grpc.insecure_channel(settings.dl_api_listen_port) as channel:
         stub: inference_pb2_grpc.InferenceImageStub = inference_pb2_grpc.InferenceImageStub(channel)
         metadata = (('access_token', settings.access_token),)
         try:
