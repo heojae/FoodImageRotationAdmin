@@ -38,6 +38,33 @@ services:
       MYSQL_ROOT_PASSWORD: fira_model_version_password
       MYSQL_DATABASE: fira_model_version
 
+  # mysql dataset server
+  mysql-dataset:
+    build:
+      dockerfile: Dockerfile
+      context: ./mysql-dataset
+    restart: unless-stopped
+    container_name: mysql-dataset
+    ports:
+      - "40054:3306"
+    volumes:
+      - ./mysql-dataset/mysql_data:/var/lib/mysql
+      - ./mysql-dataset/sqls/:/docker-entrypoint-initdb.d/
+    environment:
+      MYSQL_ROOT_PASSWORD: fira_dataset_password
+      MYSQL_DATABASE: fira_dataset
+
+  # dataset server nginx media
+  nginx-media:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./dataset_server/nginx
+    volumes:
+      - ./dataset_server/media:/app/media
+    ports:
+      - "50050:50050"
+
   # user server
   api-user:
     build:
@@ -64,18 +91,18 @@ services:
       - mysql-model_version
       - api-user
   # dl server
-  api-dl:
-    build:
-      context: ./dl_server
-      dockerfile: Dockerfile
-    image: fira/api-dl
-    volumes:
-      - ./dl_server/weight:/usr/src/app/weight
-    ports:
-      - "50052:50052"
-    restart: always
-    depends_on:
-      - api-user
-      - api-model_version
+#  api-dl:
+#    build:
+#      context: ./dl_server
+#      dockerfile: Dockerfile
+#    image: fira/api-dl
+#    volumes:
+#      - ./dl_server/weight:/usr/src/app/weight
+#    ports:
+#      - "50052:50052"
+#    restart: always
+#    depends_on:
+#      - api-user
+#      - api-model_version
 
 
