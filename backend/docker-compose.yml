@@ -51,4 +51,17 @@ services:
       - mysql-user
       - redis-server
 
+  # model_version server
+  api-model_version:
+    build:
+      context: ./model_version
+      dockerfile: Dockerfile
+    image: fira/api-model_version
+    ports:
+      - "50053:50053"
+    restart: always
+    depends_on:
+      - mysql-model_version
+      - api-user
+
 

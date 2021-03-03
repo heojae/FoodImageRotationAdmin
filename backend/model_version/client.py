@@ -10,7 +10,7 @@ from proto import model_version_pb2, model_version_pb2_grpc
 
 
 async def get_using_model() -> model_version_pb2.ModelVersionInfo:
-    async with grpc.aio.insecure_channel(settings.model_version_api_listen_addr) as channel:
+    async with grpc.aio.insecure_channel(settings.model_version_api_listen_port) as channel:
         stub: model_version_pb2_grpc.ModelVersionStub = model_version_pb2_grpc.ModelVersionStub(channel)
 
         metadata = (('access_token', settings.access_token),)
@@ -19,7 +19,7 @@ async def get_using_model() -> model_version_pb2.ModelVersionInfo:
 
 
 async def get_model_version_list() -> List[model_version_pb2.ModelVersionInfo]:
-    async with grpc.aio.insecure_channel(settings.model_version_api_listen_addr) as channel:
+    async with grpc.aio.insecure_channel(settings.model_version_api_listen_port) as channel:
         stub: model_version_pb2_grpc.ModelVersionStub = model_version_pb2_grpc.ModelVersionStub(channel)
         metadata = (('access_token', settings.access_token),)
 
@@ -30,7 +30,7 @@ async def get_model_version_list() -> List[model_version_pb2.ModelVersionInfo]:
 
 
 async def change(pk: int) -> model_version_pb2.ModelVersionInfo:
-    async with grpc.aio.insecure_channel(settings.model_version_api_listen_addr) as channel:
+    async with grpc.aio.insecure_channel(settings.model_version_api_listen_port) as channel:
         stub = model_version_pb2_grpc.ModelVersionStub(channel)
         metadata = (('access_token', settings.access_token),)
 
@@ -44,4 +44,6 @@ if __name__ == '__main__':
     logging.basicConfig()
     sample_get_using_model = asyncio.run(get_using_model())
     sample_get_model_version_list = asyncio.run(get_model_version_list())
-    sample_change = asyncio.run(change(pk=6))
+    print("sample_get_using_model : ", sample_get_using_model)
+    print("sample_get_model_version_list : ", sample_get_model_version_list)
+    # sample_change = asyncio.run(change(pk=6))
