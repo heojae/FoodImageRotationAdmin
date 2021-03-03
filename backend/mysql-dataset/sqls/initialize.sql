@@ -17,6 +17,7 @@ CREATE TABLE image_info
     dataset_info_pk    INTEGER,
     original_file_name VARCHAR(40),
     uuid_file_name     VARCHAR(40),
+    exif_degree        INTEGER,
     model_degree       INTEGER,
     confidence         DOUBLE,
     user_fix_degree    INTEGER,

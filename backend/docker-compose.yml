@@ -90,19 +90,51 @@ services:
     depends_on:
       - mysql-model_version
       - api-user
+
   # dl server
-#  api-dl:
-#    build:
-#      context: ./dl_server
-#      dockerfile: Dockerfile
-#    image: fira/api-dl
-#    volumes:
-#      - ./dl_server/weight:/usr/src/app/weight
-#    ports:
-#      - "50052:50052"
-#    restart: always
-#    depends_on:
-#      - api-user
-#      - api-model_version
+  api-dl:
+    build:
+      context: ./dl_server
+      dockerfile: Dockerfile
+    image: fira/api-dl
+    volumes:
+      - ./dl_server/weight:/usr/src/app/weight
+    ports:
+      - "50052:50052"
+    restart: always
+    depends_on:
+      - api-user
+      - api-model_version
+
+
+  # dataset server
+  api-dataset:
+    build:
+      context: ./dataset_server
+      dockerfile: Dockerfile
+    image: fira/api-dataset
+    volumes:
+      - ./dataset_server/media:/usr/src/app/media
+    ports:
+      - "50054:50054"
+    restart: always
+    depends_on:
+      - api-user
+      - mysql-dataset
+      - nginx-media
+
+  # envoy
+  envoy:
+    image: envoyproxy/envoy:v1.16.1
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml:ro
+    ports:
+      - "8080:8080"
+      - "9901:9901"
+    restart: always
+    depends_on:
+      - api-user
+      - api-dataset
+      - api-model_version
 
 

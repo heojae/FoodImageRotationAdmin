@@ -3,6 +3,7 @@ import aiofiles
 import grpc
 import logging
 import PIL
+import signal
 import uuid
 import uvloop
 
@@ -14,21 +15,28 @@ from proto.empty_pb2 import Empty
 
 from authenticate import AuthenticateUserAccessToken
 from config import settings
+from db import database
 from proto import dataset_pb2, dataset_pb2_grpc
 from proto import user_fix_image_pb2_grpc
 from utils import get_dataset_info_list, get_image_info_list, get_choose_image_info_list, get_last_dataset_info, \
     insert_image_info, update_dataset_info, insert_dataset_info, delete_image_info
 
+# ---------------------------- Setup Grpc Server for Global  -------------------------------
+server: grpc.Server
+
+
+# ----------------------------------------------------------------------------------
+
 
 class DatasetServicer(dataset_pb2_grpc.DatasetServicer):
     async def GetDatasetInfoList(self, request, context):
-        print("GetDatasetInfoList")
+        print("GetDatasetInfoList", flush=True)
         dataset_info_list = await get_dataset_info_list()
         for dataset_info in dataset_info_list:
             yield dataset_pb2.DatasetInfo(pk=dataset_info.pk, title=dataset_info.title)
 
     async def GetImageInfoList(self, request, context):
-        print("GetImageInfoList")
+        print("GetImageInfoList", flush=True)
         image_info_list = await get_image_info_list()
         for image_info in image_info_list:
             yield dataset_pb2.ImageInfo(pk=image_info.pk,
@@ -42,7 +50,7 @@ class DatasetServicer(dataset_pb2_grpc.DatasetServicer):
                                         )
 
     async def GetChooseImageInfoList(self, request, context):
-        print("GetChooseImageInfoList")
+        print("GetChooseImageInfoList", flush=True)
         image_info_list = await get_choose_image_info_list(dataset_info_pk=request.dataset_info_pk)
         for image_info in image_info_list:
             yield dataset_pb2.ImageInfo(pk=image_info.pk,
@@ -56,7 +64,7 @@ class DatasetServicer(dataset_pb2_grpc.DatasetServicer):
                                         )
 
     async def CreateDatasetInfo(self, request, context):
-        print("CreateDatasetInfo")
+        print("CreateDatasetInfo", flush=True)
         now_last_dataset_info = await get_last_dataset_info()
         await update_dataset_info(pk=now_last_dataset_info.pk, title=request.title)
         new_dataset_info_pk = await insert_dataset_info(title="untrained")
@@ -65,7 +73,7 @@ class DatasetServicer(dataset_pb2_grpc.DatasetServicer):
         return Empty()
 
     async def RemoveImage(self, request, context):
-        print("RemoveImage")
+        print("RemoveImage", flush=True)
         success = await delete_image_info(pk=request.image_info_pk)
         if success:
             return Empty()
@@ -77,7 +85,7 @@ class DatasetServicer(dataset_pb2_grpc.DatasetServicer):
 
 class UserFixImageServicer(user_fix_image_pb2_grpc.UserFixImageServicer):
     async def SaveUserFixImage(self, request, context):
-        print("SaveUserFixImage")
+        print("SaveUserFixImage", flush=True)
 
         bytes_image_file: BytesIO = BytesIO(request.image_content)
 
@@ -117,15 +125,32 @@ async def serve() -> None:
     listen_port = settings.dataset_api_listen_port
     server.add_insecure_port(listen_port)
     logging.info("Starting server on %s", listen_port)
+
+    await database.connect()
     await server.start()
-    try:
-        await server.wait_for_termination()
-    except KeyboardInterrupt:
-        await server.stop(0)
+    await server.wait_for_termination()
+
+
+async def shut_down_server(signal: signal.Signals, loop) -> None:
+    global server
+
+    await database.disconnect()
+    await server.stop(0)
+
+    loop.stop()
 
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
 
     asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
-    asyncio.run(serve())
+    loop = asyncio.get_event_loop()
+
+    signals = (signal.SIGHUP, signal.SIGTERM, signal.SIGINT)
+    for s in signals:
+        loop.add_signal_handler(s, lambda s=s: asyncio.create_task(shut_down_server(s, loop)))
+
+    try:
+        loop.run_until_complete(serve())
+    finally:
+        loop.close()
