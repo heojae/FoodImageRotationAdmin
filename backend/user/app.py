@@ -31,7 +31,7 @@ async def set_redis_default_db_instance(redis: aioredis.commands.Redis):
 class UserServicer(user_pb2_grpc.UserServicer):
     async def Login(self, request: user_pb2.LoginInfo, context: grpc.aio.ServicerContext) -> user_pb2.UserInfo:
         global redis
-        print("Login")
+        print("Login", flush=True)
 
         user = await login_user(email=request.email, password=request.password)
         if user:
@@ -44,7 +44,7 @@ class UserServicer(user_pb2_grpc.UserServicer):
         return user_pb2.UserInfo()
 
     async def AuthenticateGetUserInfo(self, request: Empty, context: grpc.aio.ServicerContext) -> user_pb2.UserInfo:
-        print("AuthenticateGetUserInfo")
+        print("AuthenticateGetUserInfo", flush=True)
 
         access_token = get_access_token_from_context(context=context)
         user = await get_user_detail_by_access_token(access_token=access_token)
@@ -59,7 +59,7 @@ class UserServicer(user_pb2_grpc.UserServicer):
 
     async def Authenticate(self, request: Empty, context: grpc.aio.ServicerContext) -> empty_pb2.Empty:
         global redis
-        print("Authenticate")
+        print("Authenticate", flush=True)
 
         access_token = get_access_token_from_context(context=context)
         user_access_token_list: List = await redis.zrange("user_access_token", encoding="utf-8")
@@ -114,4 +114,3 @@ if __name__ == '__main__':
         loop.run_until_complete(serve())
     finally:
         loop.close()
-

@@ -31,7 +31,7 @@ class Settings(BaseSettings):
 
 
 class DockerSettings(BaseSettings):
-    env: str = "local"
+    env: str = "prod"
 
     user_api_listen_port: str = "[::]:50051"
     dl_api_listen_port: str = "[::]:50052"
@@ -39,19 +39,14 @@ class DockerSettings(BaseSettings):
     dataset_api_listen_port: str = "[::]:50054"
     media_server_listen_port: str = "[::]:50050"
 
-    user_api_listen_addr: str = "api-user"
-    dl_api_listen_addr: str = "api-dl"
-    model_version_api_listen_addr: str = "api-model_version"
-    dataset_api_listen_addr: str = "api-dataset"
+    user_api_listen_addr: str = "api-user:50051"
+    dl_api_listen_addr: str = "api-dl:50052"
+    model_version_api_listen_addr: str = "api-model_version:50053"
+    dataset_api_listen_addr: str = "api-dataset:50054"
     media_server_listen_addr: str = "nginx-media"
 
-    # "mysql-user+pymysql://root:password@mysql_db:3306/employees"
-    # "postgresql://postgres:buzzni-assignment@postgres-alarm/postgres"
-    # "mysql-user://root:fira_user_password:40051@mysql-user-user/users"
-
-    # user_db_end_point: str = "mysql-user://root:fira_user_password@127.0.0.1:40051/fira_user"
     user_db_end_point: str = "mysql://root:fira_user_password@mysql-user/fira_user"
-    model_version_db_end_point: str = "mysql-user-model_version"
+    model_version_db_end_point: str = "mysql://root:fira_model_version_password@mysql-model_version/fira_model_version"
     dataset_db_end_point: str = "mysql-user-dataset"
     redis_end_point: str = "redis://redis-server:6379/0?encoding=utf-8"
 
