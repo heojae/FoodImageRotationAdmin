@@ -9,7 +9,7 @@ import reducers from "./reducers";
 import {Provider} from "react-redux";
 
 const store = createStore(reducers);
-console.log(store.getState());
+// console.log(store.getState());
 const unsubscribe = store.subscribe(() => console.log(store.getState()));
 
 
