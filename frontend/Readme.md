@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+### FrontEnd 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+#### 기술 스택
 
-### `yarn start`
+- [GRPC](https://github.com/grpc/grpc), [GRPC - WEB](https://github.com/grpc/grpc-web)
+- [React](https://ko.reactjs.org/), [Redux](https://ko.redux.js.org/introduction/getting-started/)
+- [Antd](https://ant.design/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+----------------
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### 참고 이슈
 
-### `yarn build`
+[기초 디자인 구현도](https://github.com/heojae/FoodImageRotationAdmin/issues/1)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[프론트 시작전 폴더 구조 설계](https://github.com/heojae/FoodImageRotationAdmin/issues/32)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[Proto Buf 필요한 API 에 대한 정리와 통신정리](https://github.com/heojae/FoodImageRotationAdmin/issues/13)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Docker 를 통한 컨테이너화 구현 구상](https://github.com/heojae/FoodImageRotationAdmin/issues/44)
 
-### `yarn eject`
+[release 0.1 결과물 시연](https://github.com/heojae/FoodImageRotationAdmin/issues/43)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+----------------
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### 실행시키기
 
-## Learn More
+위 레포는 `Docker` 를 통해서, 간단하게 실행하는 것을 목표로 구현하였으며, `backend` 와 `frontend` 각각 `docker-compose up` 을 통해서, 실행을 시켜야합니다. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```sh
+docker-compose up
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+그리고, `localhost:3000` 으로 접속하시면 됩니다. 
 
-### Code Splitting
+`localhost:3000/login` 으로 `redirect` 될 예정인데, `email : admin@naver.com`, `password: 1234` 을 통해서, 시작하시면 됩니다. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+or 
 
-### Analyzing the Bundle Size
+단순히 `build` 폴더로 이동하여서, 아래 명령어를 적어주어도 됩니다. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+python3 -m http.server 3000
+```
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+-----------------
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### 실제 구현 디자인
 
-### `yarn build` fails to minify
+[release 0.1 결과물 시연](https://github.com/heojae/FoodImageRotationAdmin/issues/43)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![login](./readme_static/login.jpg)
+
+
+
+![check_result](./readme_static/check_result.jpg)
+
+![fix_data](./readme_static/fix_data.jpg)
+
+
+
+![data_collect](./readme_static/data_collect.jpg)
+
+![model_version](./readme_static/model_version.jpg)
+
