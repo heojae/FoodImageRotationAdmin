@@ -63,5 +63,19 @@ services:
     depends_on:
       - mysql-model_version
       - api-user
+  # dl server
+  api-dl:
+    build:
+      context: ./dl_server
+      dockerfile: Dockerfile
+    image: fira/api-dl
+    volumes:
+      - ./dl_server/weight:/usr/src/app/weight
+    ports:
+      - "50052:50052"
+    restart: always
+    depends_on:
+      - api-user
+      - api-model_version
 
 
