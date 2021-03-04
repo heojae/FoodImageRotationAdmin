@@ -4,9 +4,13 @@
 
 ##### 참고 이슈
 
+[Proto Buf, 필요한 API 에대한 정리와 통신 정리](https://github.com/heojae/FoodImageRotationAdmin/issues/13)
+
 [Model Version Server 설계 및 구상도](https://github.com/heojae/FoodImageRotationAdmin/issues/18)
 
 [Docker 를 통한 컨테이너화](https://github.com/heojae/FoodImageRotationAdmin/issues/44)
+
+[async run 방식 수정](https://github.com/heojae/FoodImageRotationAdmin/issues/45)
 
 
 
@@ -21,7 +25,10 @@
 settings = DockerSettings() # Docker(prod)
 ```
 
-
+- `model_version_server`
+- `mysql-model_version`
+- `user_server`
+- `dl_server`
 
 
 
@@ -58,6 +65,10 @@ sh run_db_gen.sh
 - 서버 동작시키기
 
   아래와 같이 동작을 시키면 `localhost:50051` 에서 돌아가고 있는 중이고, 서버는 정상적으로 돌아가고 있습니다. 
+  
+  `user server` 는 먼저 동작되고 있어야 합니다. 
+  
+  `dl server` 는 이 서버 열고 난 뒤 열어 주셔야합니다. 
 
 ```sh
 sh run_server

@@ -1,240 +1,77 @@
-> 대주제 : Dataset Info Server 의 설계와 각각의 API 들의 설정이유들을 명시하고 싶다. 
->
-> 소주제 : db 설계 와 활용한 라이브러리들을 정리하고 싶다. 
+#### DL Server 
 
 
 
 ##### 참고 이슈
 
-[User Server 설계 및 구상도](https://github.com/heojae/FoodImageRotationAdmin/issues/16)
-
-[Model Version Server 설계 및 구상도](https://github.com/heojae/FoodImageRotationAdmin/issues/18)
+[Proto Buf, 필요한 API 에대한 정리와 통신 정리](https://github.com/heojae/FoodImageRotationAdmin/issues/13)
 
 [DL Server 설계 및 구상도](https://github.com/heojae/FoodImageRotationAdmin/issues/27)
 
-[Dataset Server 설계 및 구상도](https://github.com/heojae/FoodImageRotationAdmin/issues/29)
+[Docker 를 통한 컨테이너화](https://github.com/heojae/FoodImageRotationAdmin/issues/44)
 
-------------------
-
-
-
-#### API 설명
-
-아래 API 모두, `Service-Side Interceptor` 를 활용해서,
-
-https://grpc.github.io/grpc/python/grpc.html#service-side-interceptor
-
-`user server - authenticate` 에게 요청을 보내서, 유저 인증을 하게 됩니다.
-
-- ##### GetDatasetInfoList
-
-  모든 `DatasetInfo` 의 정보를 들고 온다. 
-
-- ##### GetImageInfoList
-
-  전체 `ImageInfo` 정보들을 들고온다. 
-
-- ##### GetChooseImageInfoList
-
-  선택된, `Dataset pk` 에 포함되는, `Image Info` 들의 정보를 들고 온다. 
-
-- ##### CreateDatasetInfo
-
-  새로운 `DatasetInfo` 를 생성한다. 
-
-  기존의 `untrained` Dataset 을 -> 새로운 이름을 주어주고, 
-
-  아예 또 새로운 `untrained` Dataset 을 생성하여, 무에서 시작한다. 
-
-- ##### RemoveImage
-
-  해당 `image info pk` 의 `ImageInfo` 를 삭제한다. 
-
-- ##### SaveUserFixImage
-
-  `model` 이 잘못 예측한, 이미지에 대한 정보와 `user`가 수정한 정보를 담아서, 그에 대한 정보를 함께 저장합니다. 
-
-  이는 `media` 폴더에 저장하게 될 예정이며, `media server` 를 통해서, 접근이 가능합니다. 
+[async run 방식 수정](https://github.com/heojae/FoodImageRotationAdmin/issues/45)
 
 
 
-------
+-----------
 
-#### DB 설계도
+#### Docker mode
 
-아래와 같이,  2개의 테이블로 이루어져있으며, 기본적인 정보들만, 포함하고 있습니다.
-[erdcloud](https://www.erdcloud.com/library) 를 활용하여 그렸습니다.
+`config.py` 에서, 아래 둘 중 하나를 선택해서, `dev` 와 `docker(prod)` 를 선택할 수 있습니다.  
 
-(사진)
+```python
+# settings = Settings() # Dev 
+settings = DockerSettings() # Docker(prod)
+```
 
-------------------------
+- `user server`
+- `mysql-dataset`
+- `nginx-media` -> 이것을 통해서, static 파일들을 보내주는 역할을 합니다. 
 
-#### Media Server
 
-`python http.server` 를 활용하여, 이미지와 같은 파일들을 간편하게, 접근할 수 있는 `media server` 를 구현하였습니다. 
 
-`Media server` 동작시키기
+-------------------------
 
-아래를 `media` 폴더에서 동작 시키면, `Front` 에서도,  `media`폴더 내부에 있는 파일에 접근할 수 있습니다. 
+#### Dev mode
 
-```shell
-cd media
-python -m http.server 50050 &
-# http://localhost:50050/admin/profile.jpg
+- Proto 파일들 생성하기
+
+  `user.proto` 와 `empty.proto` 를 활용해서,  생성을 하고, 
+
+  프로젝트의 `proto/` 에 위치하기 때문에, 파일의 `import` 경로를 수정해야합니다. 
+
+   (`proto` 를 추가해두어야 한다.  ),  `import proto.empty_pb2 as empty__pb2`
+
+```sh
+sh run_proto_gen 
 ```
 
 
 
-------------------------
+- DB 생성하기
 
-#### 
+  `sqlAlchemy` 를 활용해서, `sqlite3` DB 를 생성하였고, 이를 기반으로, 
 
+  Sample_instance 들을 생성합니다. 
 
-
-#### 라이브러리
-
-아래에서, 거의 동일한 라이브러리를 활용해서, 구현하였습니다. 
-
-[User Server 설계 및 구상도](https://github.com/heojae/FoodImageRotationAdmin/issues/16)
-
-[Model Version Server 설계 및 구상도](https://github.com/heojae/FoodImageRotationAdmin/issues/18)
-
-[DL Server 설계 및 구상도](https://github.com/heojae/FoodImageRotationAdmin/issues/27)
-
-
-
-- `aiofiles`
-
-  이를 활용하여, `async` 하게, `os` 관련 작업들을 할 수 있었습니다. 
-
-  [https://pypi.org/project/aiofiles/](https://pypi.org/project/aiofiles/)
-
-
-
-
-
-
-
-
-
-
-
-
-
-> 대주제 : Dataset Info Server 의 설계와 각각의 API 들의 설정이유들을 명시하고 싶다. 
->
-> 소주제 : db 설계 와 활용한 라이브러리들을 정리하고 싶다. 
-
-
-
-##### 참고 이슈
-
-[User Server 설계 및 구상도](https://github.com/heojae/FoodImageRotationAdmin/issues/16)
-
-[Model Version Server 설계 및 구상도](https://github.com/heojae/FoodImageRotationAdmin/issues/18)
-
-[DL Server 설계 및 구상도](https://github.com/heojae/FoodImageRotationAdmin/issues/27)
-
-[Dataset Server 설계 및 구상도](https://github.com/heojae/FoodImageRotationAdmin/issues/29)
-
-------------------
-
-
-
-#### API 설명
-
-아래 API 모두, `Service-Side Interceptor` 를 활용해서,
-
-https://grpc.github.io/grpc/python/grpc.html#service-side-interceptor
-
-`user server - authenticate` 에게 요청을 보내서, 유저 인증을 하게 됩니다.
-
-- ##### GetDatasetInfoList
-
-  모든 `DatasetInfo` 의 정보를 들고 온다. 
-
-- ##### GetImageInfoList
-
-  전체 `ImageInfo` 정보들을 들고온다. 
-
-- ##### GetChooseImageInfoList
-
-  선택된, `Dataset pk` 에 포함되는, `Image Info` 들의 정보를 들고 온다. 
-
-- ##### CreateDatasetInfo
-
-  새로운 `DatasetInfo` 를 생성한다. 
-
-  기존의 `untrained` Dataset 을 -> 새로운 이름을 주어주고, 
-
-  아예 또 새로운 `untrained` Dataset 을 생성하여, 무에서 시작한다. 
-
-- ##### RemoveImage
-
-  해당 `image info pk` 의 `ImageInfo` 를 삭제한다. 
-
-- ##### SaveUserFixImage
-
-  `model` 이 잘못 예측한, 이미지에 대한 정보와 `user`가 수정한 정보를 담아서, 그에 대한 정보를 함께 저장합니다. 
-
-  이는 `media` 폴더에 저장하게 될 예정이며, `media server` 를 통해서, 접근이 가능합니다. 
-
-
-
-------
-
-#### DB 설계도
-
-아래와 같이,  2개의 테이블로 이루어져있으며, 기본적인 정보들만, 포함하고 있습니다.
-[erdcloud](https://www.erdcloud.com/library) 를 활용하여 그렸습니다.
-
-(사진)
-
-------------------------
-
-#### Media Server
-
-`python http.server` 를 활용하여, 이미지와 같은 파일들을 간편하게, 접근할 수 있는 `media server` 를 구현하였습니다. 
-
-`Media server` 동작시키기
-
-아래를 `media` 폴더에서 동작 시키면, `Front` 에서도,  `media`폴더 내부에 있는 파일에 접근할 수 있습니다. 
-
-```shell
-cd media
-python -m http.server 50050 &
-# http://localhost:50050/admin/profile.jpg
+```sh
+sh run_db_gen.sh
 ```
 
 
 
-------------------------
+- 서버 동작시키기
 
-#### 
+  아래와 같이 동작을 시키면 `localhost:50051` 에서 돌아가고 있는 중이고, 서버는 정상적으로 돌아가고 있습니다. 
+  
+  `media-server` 와 `database` 는 따로 열어서, 돌리셔야 합니다. 
 
+```sh
+python app.py
+```
 
-
-#### 라이브러리
-
-아래에서, 거의 동일한 라이브러리를 활용해서, 구현하였습니다. 
-
-[User Server 설계 및 구상도](https://github.com/heojae/FoodImageRotationAdmin/issues/16)
-
-[Model Version Server 설계 및 구상도](https://github.com/heojae/FoodImageRotationAdmin/issues/18)
-
-[DL Server 설계 및 구상도](https://github.com/heojae/FoodImageRotationAdmin/issues/27)
-
-
-
-- `aiofiles`
-
-  이를 활용하여, `async` 하게, `os` 관련 작업들을 할 수 있었습니다. 
-
-  [https://pypi.org/project/aiofiles/](https://pypi.org/project/aiofiles/)
-
-
-
-
+`media server` 의 경우,`media` 폴더 위에서 `python3 -m http.server 50050` 를 통해서 열수도 있습니다. 
 
 
 
