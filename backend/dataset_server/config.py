@@ -47,7 +47,6 @@ class DockerSettings(BaseSettings):
 
     user_db_end_point: str = "mysql://root:fira_user_password@mysql-user/fira_user"
     model_version_db_end_point: str = "mysql://root:fira_model_version_password@mysql-model_version/fira_model_version"
-    # dataset_db_end_point: str = "mysql-user-dataset"
     dataset_db_end_point: str = "mysql://root:fira_dataset_password@mysql-dataset/fira_dataset"
     redis_end_point: str = "redis://redis-server:6379/0?encoding=utf-8"
 
