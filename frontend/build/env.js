@@ -53,7 +53,7 @@ window.env = {
   "npm_config_key": "",
   "npm_package_readmeFilename": "Readme.md",
   "__INTELLIJ_COMMAND_HISTFILE__": "/Users/shrldh3576/Library/Application Support/JetBrains/PyCharm2020.1/terminal/history/history-1109",
-  "npm_package_description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "npm_package_description": "",
   "npm_package_dependencies_web_vitals": "^1.0.1",
   "USER": "shrldh3576",
   "npm_package_dependencies__testing_library_user_event": "^12.1.10",
