@@ -4,9 +4,13 @@
 
 ##### 참고 이슈
 
+[Proto Buf, 필요한 API 에대한 정리와 통신 정리](https://github.com/heojae/FoodImageRotationAdmin/issues/13)
+
 [DL Server 설계 및 구상도](https://github.com/heojae/FoodImageRotationAdmin/issues/27)
 
 [Docker 를 통한 컨테이너화](https://github.com/heojae/FoodImageRotationAdmin/issues/44)
+
+[async run 방식 수정](https://github.com/heojae/FoodImageRotationAdmin/issues/45)
 
 
 
@@ -21,7 +25,8 @@
 settings = DockerSettings() # Docker(prod)
 ```
 
-
+- `user server`
+- `model version server`
 
 
 
