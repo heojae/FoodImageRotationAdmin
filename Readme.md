@@ -82,7 +82,7 @@ docker-compose up  # -d # back ground 에서 돌리고 싶을 경우
 
 > 추후 관련 작업을 하게 된다면, 참고해주세요. 
 
-![gir_flow](./readme_static/gir_flow.jpg)
+![gir_flow](./readme_static/git_flow.jpg)
 
 
 
