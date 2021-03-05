@@ -36,7 +36,8 @@ class DataCollect extends Component {
                     handleSetDataCollectImageInfoList={this.props.handleSetDataCollectImageInfoList}
                 />
 
-                <ImageInfoOutput choose_dataset_info_pk={this.props.choose_dataset_info_pk}
+                <ImageInfoOutput tool_mode={this.props.tool_mode}
+                                 choose_dataset_info_pk={this.props.choose_dataset_info_pk}
                                  image_info_list={this.props.image_info_list}/>
 
                 <SaveDataset choose_dataset_info_pk={this.props.choose_dataset_info_pk}
