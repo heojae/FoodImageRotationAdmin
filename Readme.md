@@ -46,7 +46,9 @@
 
 #### 시연 해보기
 
-> `backend` 와 `frontend` 를 통해 구현된 API 들을 `docker compose up` 들을 통해서, 실제로 돌릴 수 있습니다. 
+[결과물 시연 영상](https://github.com/heojae/FoodImageRotationAdmin/issues/43), [Docker Version 시연 영상](https://github.com/heojae/FoodImageRotationAdmin/issues/43#issuecomment-791501187)
+
+> `backend` 와 `frontend` 를 통해 구현된 부분들을 `docker compose up` 들을 통해서, 실제로 돌릴 수 있습니다. 
 
 총 2개의 terminal 을 열고, 아래 명령어를 적어주시면, 됩니다. 
 
@@ -62,9 +64,9 @@ docker-compose up  # -d # back ground 에서 돌리고 싶을 경우
 
 아래 `gif` 는 위의 경우를 시연하였을 때를 기록한 시연 영상입니다. 
 
-![docker_demo](./readme_static/docker_demo.gif)
+![docker_wait_for_it](./readme_static/docker_wait_for_it.gif)
 
-
+> `backend` 에서 `api_dl server` 까지 다 완료되었을 때, 그 때, 실행을 시키면 됩니다. 
 
 
 
