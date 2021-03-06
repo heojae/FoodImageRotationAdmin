@@ -51,3 +51,5 @@ docker-compose up
 - `dl_server`
 - `dataset_server`, `nginx-media`,`mysql-dataset`
 
+![docker_backend](./readme_static/docker_backend.gif)
+
