@@ -38,6 +38,10 @@ docker-compose up
 
 그리고, `localhost:3000` 으로 접속하시면 됩니다. 
 
+![docker_frontend](./readme_static/docker_frontend.gif)
+
+
+
 `localhost:3000/login` 으로 `redirect` 될 예정인데, `email : admin@naver.com`, `password: 1234` 을 통해서, 시작하시면 됩니다. 
 
 or 
