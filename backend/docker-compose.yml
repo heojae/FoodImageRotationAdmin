@@ -70,6 +70,7 @@ services:
     build:
       context: ./user
       dockerfile: Dockerfile
+    command: ["./wait-for-it.sh", "mysql-user:40051", "--", "python", "app.py"]
     image: fira/api-user
     ports:
       - "50051:50051"
@@ -83,6 +84,7 @@ services:
     build:
       context: ./model_version
       dockerfile: Dockerfile
+    command: ["./wait-for-it.sh", "mysql-model_version:40053", "--", "./wait-for-it.sh", "api-user:50051", "--", "python", "app.py"]
     image: fira/api-model_version
     ports:
       - "50053:50053"
@@ -96,6 +98,7 @@ services:
     build:
       context: ./dl_server
       dockerfile: Dockerfile
+    command: ["./wait-for-it.sh", "api-user:50051", "--", "./wait-for-it.sh", "api-model_version:50052", "--", "python", "app.py"]
     image: fira/api-dl
     volumes:
       - ./dl_server/weight:/usr/src/app/weight
@@ -112,6 +115,7 @@ services:
     build:
       context: ./dataset_server
       dockerfile: Dockerfile
+    command: ["./wait-for-it.sh", "mysql-dataset:40054", "--", "./wait-for-it.sh", "api-user:50051", "--", "python", "app.py"]
     image: fira/api-dataset
     volumes:
       - ./dataset_server/media:/usr/src/app/media
