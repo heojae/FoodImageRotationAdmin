@@ -14,6 +14,8 @@
 
 [학습 결과 정리 - cpu, single gpu, multi gpu(data parallel, custom data parallel, distributed parallel, apex)](https://github.com/heojae/FoodImageRotationAdmin/issues/7)
 
+[실험, Inference 때의 GPU 상 메모리 할당 분석 및 정리](https://github.com/heojae/FoodImageRotationAdmin/issues/33)
+
 
 
 --------
