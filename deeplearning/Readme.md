@@ -34,6 +34,18 @@
 
 
 
+![deeplearning_flow](./readme_static/deeplearning_flow.jpeg)
+
+
+
+-----
+
+
+
+
+
+
+
 아래 파일들은 모두 `argparser` 를 통해서, 구현해두었으므로, 파일 내부를 참조해서, 값을 변경하여 사용하시길 바랍니다. 
 
 - `train_cpu_only.py`
