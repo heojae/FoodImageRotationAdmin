@@ -26,6 +26,14 @@
 
 
 
+------
+
+
+
+![frontend_flow](./readme_static/frontend_flow.jpeg)
+
+
+
 ----------------
 
 #### 실행시키기
