@@ -28,7 +28,17 @@
 
 [release 0.1 시연 자료 ](https://github.com/heojae/FoodImageRotationAdmin/issues/43)
 
--------------------
+
+
+--------
+
+
+
+![backend_flow](./readme_static/backend_flow.jpeg)
+
+
+
+-----
 
 
 
