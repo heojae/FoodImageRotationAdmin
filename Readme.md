@@ -26,13 +26,23 @@
 
   `pytorch` 를 통해서, `Food Image Rotation` 이라는 주제에 대해서, 딥러닝 학습한 것을 정리한 것입니다.
 
+  다양한 환경에서, 학습을 하는 방법을 정리하여 두었습니다. 
+
+  ![deeplearning_flow](./readme_static/deeplearning_flow.jpeg)
+
+  
+
 - #### [Backend](https://github.com/heojae/FoodImageRotationAdmin/tree/master/backend)
 
   `GRPC` 와 `python`, `Database` 을 통해서,  `MSA(micro service architecture)` 구조 형태이며, 서로 통신하는 형태로 구현되어 있습니다. 
 
+  ![backend_flow](./readme_static/backend_flow.jpeg)
+
 - #### [Frontend](https://github.com/heojae/FoodImageRotationAdmin/tree/master/frontend)
 
-  `GRPC-WEB`,`React`, `Redux` 등을 활용하여, 웹 페이지가 구현되어 있습니다. 
+  `GRPC-WEB`,`React`, `Redux` ,`antd` 등을 활용하여, 웹 페이지가 구현되어 있습니다. 
+
+  ![frontend_flow](./readme_static/frontend_flow.jpeg)
 
 - #### [Protos](https://github.com/heojae/FoodImageRotationAdmin/tree/master/protos)
 
